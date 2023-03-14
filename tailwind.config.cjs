@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
-  content: ["./index.html", "./src/**/*.{js,jsx}", "./node_modules/tw-elements/dist/js/**/*.js"],
+  content: ["./index.html", "./src/**/*.{js,jsx}"],
   mode: "jit",
   theme: {
     extend: {
@@ -13,6 +13,9 @@ module.exports = {
         primaryYellow: "#e8e817",
         primaryBlue: "#1717e8",
         primaryGrey: "#f3f3f3"
+      },
+      transitionProperty: {
+        left: "left",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
@@ -33,5 +36,5 @@ module.exports = {
       xxl: "2560px",
     },
   },
-  plugins: []
+  plugins: [require("@tailwindcss/aspect-ratio")]
 };

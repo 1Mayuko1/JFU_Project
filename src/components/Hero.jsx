@@ -6,9 +6,9 @@ import CarouselComponent from "./CarouselComponent";
 
 const Hero = () => {
     return (
-        <section className="bg-gray-50">
+        <section className="bg-gray-200 bg-opacity-50">
 
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center w-full">
                 <CarouselComponent />
             </div>
 

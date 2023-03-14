@@ -21,6 +21,7 @@ import phone from "./phone.svg"
 import instagram from "./instagram.svg"
 import mail from "./mail.svg"
 import jewishStarIcon from "./jewishStarIcon.svg"
+import chevronLeft from "./chevronLeft.svg"
 
 export {
     menu,
@@ -46,4 +47,5 @@ export {
     mail,
     instagram,
     jewishStarIcon,
+    chevronLeft,
 }
