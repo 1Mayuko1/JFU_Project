@@ -1,15 +1,28 @@
 import React from 'react';
 import {chessTestImage, facebook, jewishStarIcon, linkedin, twitter} from "../assets";
 import styles from "../style";
-import {bottomLinks, contacts} from "../constants/constants";
+import {bottomLinks, contacts, newsFromWebsite, worldPics} from "../constants/constants";
 import CarouselComponent from "./CarouselComponent";
+import HorizontalNewsCard from "./HorizontalNewsCard";
+import newsDataForWorld from "../constants/newsDataForWorld.json"
 
 const Hero = () => {
     return (
         <section className="bg-gray-200 bg-opacity-50">
 
-            <div className="flex justify-center items-center w-full">
+            <div className="flex justify-center items-center w-full py-20">
                 <CarouselComponent />
+            </div>
+
+            <div>
+                <div className="flex flex-wrap justify-center w-full">
+                    {newsFromWebsite.slice(0, 3).map((card, index) => (
+                            <div className="flex flex-wrap justify-center w-full">
+                                <HorizontalNewsCard imgSource={worldPics} key={card.id} {...card} />
+                            </div>
+                        ))
+                    }
+                </div>
             </div>
 
             <div id="preFooter" className="flex md:flex-row justify-evenly ultraSmall:flex-col">

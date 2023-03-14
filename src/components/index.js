@@ -3,6 +3,7 @@ import Navbar from './Navbar'
 import Hero from './Hero'
 import Footer from './Footer'
 import CarouselComponent from './CarouselComponent'
+import HorizontalNewsCard from './HorizontalNewsCard'
 
 export {
     Layout,
@@ -10,4 +11,5 @@ export {
     Hero,
     Footer,
     CarouselComponent,
+    HorizontalNewsCard,
 }

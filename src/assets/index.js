@@ -22,6 +22,10 @@ import instagram from "./instagram.svg"
 import mail from "./mail.svg"
 import jewishStarIcon from "./jewishStarIcon.svg"
 import chevronLeft from "./chevronLeft.svg"
+import news1Image from "./news1Image.jpeg"
+import shagal from "./shagal.jpeg"
+
+// import chevronLeft from "./chevronLeft.svg"
 
 export {
     menu,
@@ -48,4 +52,6 @@ export {
     instagram,
     jewishStarIcon,
     chevronLeft,
+    news1Image,
+    shagal,
 }
