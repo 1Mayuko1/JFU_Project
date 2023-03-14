@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {arrowUp, chevronDown, chevronRight} from "../assets";
 import styles from "../style";
 
-const HorizontalNewsCard = ({content, title, date, mainImage, paragraphs, id}) => {
+const HorizontalNewsCard = ({content, title, date, mainImage, paragraphs, details}) => {
 
     const [detailsVisible, setDetailsVisible] = useState(false)
 
@@ -38,7 +38,10 @@ const HorizontalNewsCard = ({content, title, date, mainImage, paragraphs, id}) =
                             {trimTextToLength(title, 100)}
                         </p>
                         <p className="font-poppins font-normal text-[22px] leading-[28px] text-gray-700 my-2">
-                            {trimTextToLength(content, 300)}
+                            {trimTextToLength(content, 700)}
+                        </p>
+                        <p className="font-poppins font-normal text-[22px] leading-[28px] text-gray-700 my-2">
+                            {trimTextToLength(details, 700)}
                         </p>
                     </div>
                     <div className="flex flex-col md:flex-row md:justify-between justify-center items-center mb-3">
@@ -57,7 +60,7 @@ const HorizontalNewsCard = ({content, title, date, mainImage, paragraphs, id}) =
                 </div>
             </div>
 
-            <div className={`${detailsVisible ? '' : 'hidden'} flex flex-col xl:min-w-[70%] lg:min-w-[80%] cursor-pointer xl:min-w-[70%] lg:min-w-[80%] w-[80%] sm:min-w-[80%] min-w-[70%] xs:h-full md:h-auto items-center border md:max-w-xl bg-gray-200 delay-100 duration-500`}>
+            <div className={`${detailsVisible ? '' : 'hidden'} flex flex-col xl:min-w-[70%] lg:min-w-[80%] cursor-pointer xl:min-w-[70%] lg:min-w-[80%] w-[80%] sm:min-w-[80%] min-w-[70%] xs:h-full md:h-auto items-center border md:max-w-xl bg-gray-200 mb-5 rounded-b-lg delay-100 duration-500`}>
                 {paragraphs.map((item, index) => {
                     return (
                         <p key={new Date() + `${index}`} className={`px-5 py-6 font-poppins font-normal text-[25px] text-gray-700`}>

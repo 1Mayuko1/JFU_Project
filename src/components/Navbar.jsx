@@ -5,7 +5,6 @@ import {chevronRight, chevronDown, close, menu, search} from "../assets";
 import {dropDownNavLinks, simpleNavLinks} from "../constants/constants";
 import styles from "../style";
 import {Link} from "react-router-dom";
-import {alert} from "@material-tailwind/react";
 
 const Navbar = () => {
     const [toggleMenu, setToggleMenu] = useState(false);
