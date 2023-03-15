@@ -74,13 +74,13 @@ const Navbar = () => {
             <div className={`${styles.paddingX} ${styles.flexCenter}`}>
                 <div className={`${styles.boxWidth}`}>
                     <nav className="w-full flex py-6 justify-between items-center navbar">
-                        <div className="relative z-[1] w-[124px] h-[32px] flex flex-row items-center cursor-pointer">
+                        <div className="relative z-[3] w-[124px] h-[32px] flex flex-row items-center cursor-pointer">
                             <p className="text-primaryBlue text-[30px] font-semibold">J</p>
                             <p className="text-gray-800 text-[30px] font-semibold">F</p>
                             <p className="text-yellow-500 text-[30px] font-semibold">U</p>
                         </div>
 
-                        <ul className="relative z-[1] list-none sm:flex hidden justify-end items-center flex-1">
+                        <ul className="relative z-[3] list-none sm:flex hidden justify-end items-center flex-1">
                             <li className={`font-poppins font-normal text-gray-700 cursor-pointer text-[16px] hover:text-black mr-10 ml-10 `}>
                                 <Link to={`/`}>Главная</Link>
                             </li>
@@ -109,7 +109,7 @@ const Navbar = () => {
                         </div>
 
                         {/*DropDownMenu*/}
-                        <div className={`${!dropDownMenuVisible ? "hidden" : "flex"} p-3 bg-gray-300 absolute top-20 right-40 mx-4 my-2 min-w-[140px] rounded-xl sidebar z-[3]`}>
+                        <div className={`${!dropDownMenuVisible ? "hidden" : "flex"} p-3 bg-gray-300 absolute top-20 right-40 mx-4 my-2 min-w-[140px] rounded-xl sidebar z-[4]`}>
                             <ul className="list-none flex justify-end items-center flex-1 flex-col">
                                 {dropDownNavLinks.map((nav, index) => (
                                     <li key={nav.id} className={`w-full text-center rounded-lg px-2 py-1 hover:bg-gray-400 font-poppins font-medium cursor-pointer text-gray-700 text-[16px] ${index === dropDownNavLinks.length - 1 ? "mb-0" : "mb-3"}`} onClick={() => {setToggleMenu(false); setDropDownMenuVisible(false)}}>

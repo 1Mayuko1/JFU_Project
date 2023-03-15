@@ -6,7 +6,11 @@ import CarouselComponent from './CarouselComponent'
 import HorizontalNewsCard from './HorizontalNewsCard'
 import GreyButton from './GreyButton'
 import LoadingButton from './LoadingButton'
+import SideInfoCards from "./SideInfoCards";
+import VerticalNewsCard from "./VerticalNewsCard";
+
 // import HorizontalNewsCard from './Modal'
+
 
 export {
     Layout,
@@ -17,4 +21,6 @@ export {
     HorizontalNewsCard,
     LoadingButton,
     GreyButton,
+    SideInfoCards,
+    VerticalNewsCard,
 }
