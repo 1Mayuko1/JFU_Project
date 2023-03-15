@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <div>
             <div>
-                <div className={`bg-gray-200 bg-opacity-50 relative z-[1] ${styles.paddingX} ${styles.flexCenter}`}>
+                <div className={`bg-gray-400 bg-opacity-50 relative z-[1] ${styles.paddingX} ${styles.flexCenter}`}>
                     <div className={`${styles.boxWidth}`}>
                         <section className={`${styles.flexCenter} sm:pt-8 sm:pb-8 py-6 flex-col`}>
                             <div className={`${styles.flexStart} md:flex-row flex-col mb-8 w-full`}>

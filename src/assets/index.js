@@ -24,8 +24,11 @@ import jewishStarIcon from "./jewishStarIcon.svg"
 import chevronLeft from "./chevronLeft.svg"
 import news1Image from "./news1Image.jpeg"
 import shagal from "./shagal.jpeg"
+import news3Photo from "./news3Photo.jpeg"
+import news4Image from "./news4Image.jpeg"
 
-// import chevronLeft from "./chevronLeft.svg"
+import news5Image from "./news5Image.jpeg"
+// import news3Photo from "./news3Photo.jpeg"
 
 export {
     menu,
@@ -54,4 +57,7 @@ export {
     chevronLeft,
     news1Image,
     shagal,
+    news3Photo,
+    news4Image,
+    news5Image,
 }

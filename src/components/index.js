@@ -4,6 +4,9 @@ import Hero from './Hero'
 import Footer from './Footer'
 import CarouselComponent from './CarouselComponent'
 import HorizontalNewsCard from './HorizontalNewsCard'
+import GreyButton from './GreyButton'
+import LoadingButton from './LoadingButton'
+// import HorizontalNewsCard from './Modal'
 
 export {
     Layout,
@@ -12,4 +15,6 @@ export {
     Footer,
     CarouselComponent,
     HorizontalNewsCard,
+    LoadingButton,
+    GreyButton,
 }

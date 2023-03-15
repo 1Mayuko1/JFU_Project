@@ -1,14 +1,52 @@
-import React from 'react';
-import {chessTestImage, facebook, jewishStarIcon, linkedin, twitter} from "../assets";
+import React, {useRef, useState} from 'react';
+import {arrowUp, chessTestImage, facebook, jewishStarIcon, linkedin, twitter} from "../assets";
 import styles from "../style";
 import {bottomLinks, contacts, newsFromWebsite, worldPics} from "../constants/constants";
 import CarouselComponent from "./CarouselComponent";
 import HorizontalNewsCard from "./HorizontalNewsCard";
-import newsDataForWorld from "../constants/newsDataForWorld.json"
+import {Link} from "react-router-dom";
+import LoadingButton from "./LoadingButton";
+import GreyButton from "./GreyButton";
 
 const Hero = () => {
+
+    const [visibleItems, setVisibleItems] = useState(4)
+    const [btnLoaderMoreVisible, setBtnLoaderMoreVisible] = useState(false)
+    const [btnLoaderLessVisible, setBtnLoaderLessVisible] = useState(false)
+    const top = useRef(null)
+    const bottom = useRef(null)
+
+    const executeTopScroll = () => top.current.scrollIntoView()
+    const executeBottomScroll = () => bottom.current.scrollIntoView()
+
+    const showMoreNews = () => {
+        if (visibleItems !== newsFromWebsite.length) {
+            setBtnLoaderMoreVisible(true)
+            setTimeout(() => {
+                setBtnLoaderMoreVisible(false)
+                setVisibleItems((prevState) => prevState + 2)
+            }, 2000);
+        }
+    }
+
+    const showLessNews = () => {
+        if(visibleItems > 2) {
+            setBtnLoaderLessVisible(true)
+            setTimeout(() => {
+                setBtnLoaderLessVisible(false)
+                setVisibleItems((prevState) => prevState - 2)
+            }, 2000);
+        }
+    }
+
     return (
-        <section className="bg-gray-200 bg-opacity-50">
+        <section ref={top} className={`bg-gray-200 bg-opacity-50`}>
+
+            <div className="pt-[6%]">
+                <h1 className="flex-1 font-poppins font-semibold ss:text-[72px] text-[52px] text-gray-600 ss:leading-[100.8px] leading-[75px] text-center">
+                    Главная
+                </h1>
+            </div>
 
             <div className="flex justify-center items-center w-full py-20">
                 <CarouselComponent />
@@ -16,16 +54,56 @@ const Hero = () => {
 
             <div>
                 <div className="flex flex-wrap justify-center w-full">
-                    {newsFromWebsite.slice(0, 3).map((card, index) => (
+                    {newsFromWebsite.slice(0, visibleItems).map((card, index) => (
                             <div className="flex flex-wrap justify-center w-full">
-                                <HorizontalNewsCard imgSource={worldPics} key={card.id} {...card} />
+                                <HorizontalNewsCard imgSource={worldPics} index={index} key={card.id} {...card} />
                             </div>
                         ))
                     }
                 </div>
             </div>
 
-            <div id="preFooter" className="flex md:flex-row justify-evenly ultraSmall:flex-col">
+            <div className="flex justify-center items-center w-full py-20">
+                <section className="bg-gray-100 flex flex-row flex-wrap mb-6 justify-between items-center">
+
+                    <div className="group cursor-pointer flex-1 min-w-[270px]" onClick={executeTopScroll}>
+                        <div className="flex-1 flex justify-center items-center flex-row m-3">
+                            <h4 className="font-poppins font-semibold xs:text-[30.89px] text-[25.89px] xs:leading-[53.16px] leading-[43.16px] text-gray-600">
+                                В начало
+                            </h4>
+                            <img src={arrowUp} alt="arrow-up" className="ml-1 transform w-[23px] h-[23px] object-contain group-hover:translate-x-2 group-hover:-translate-y-1" />
+                        </div>
+                    </div>
+
+                    <div className="group cursor-pointer flex-1 min-w-[200px] mx-10" onClick={showLessNews}>
+                        <div className={``}>
+                            {
+                                !btnLoaderLessVisible ? <GreyButton title={'Показать меньше'}/> : <LoadingButton title={'Загрузка...'}/>
+                            }
+                        </div>
+                    </div>
+
+                    <div className="group cursor-pointer flex-1 min-w-[200px] mx-10" onClick={showMoreNews}>
+                        <div className={``}>
+                            {
+                                !btnLoaderMoreVisible ? <GreyButton title={'Загрузить ещё'}/> : <LoadingButton title={'Загрузка...'}/>
+                            }
+                        </div>
+                    </div>
+
+                    <div className="group cursor-pointer flex-1 min-w-[270px]" onClick={executeBottomScroll}>
+                        <div className="flex-1 flex justify-center items-center flex-row m-3">
+                            <img src={arrowUp} alt="arrow-up" className="rotate-180 group-hover:-translate-x-1.5 group-hover:translate-y-0.5 mr-1" />
+                            <h4 className="font-poppins font-semibold xs:text-[30.89px] text-[25.89px] xs:leading-[53.16px] leading-[43.16px] text-gray-600">
+                                В конец
+                            </h4>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+
+            <div id="preFooter" className="flex md:flex-row justify-evenly ultraSmall:flex-col mt-20">
                 <div className="flex flex-col items-center p-10 sm:justify-center sm:pt-0">
                     <div>
                         <a href="/">
@@ -97,10 +175,10 @@ const Hero = () => {
                     }
                 </div>
 
-                <div className="flex flex-col p-10 sm:pt-0">
+                <div className="flex flex-col items-center p-10 sm:pt-0">
                     <div>
-                        <h3 className="md:text-4xl ultraSmall:text-3xl font-bold text-gray-700 items-center">
-                            Наши контакты
+                        <h3 className="md:text-4xl ultraSmall:text-3xl font-bold text-gray-700">
+                            Меню сайта
                         </h3>
                     </div>
                     {
@@ -116,6 +194,8 @@ const Hero = () => {
                         })
                     }
                 </div>
+
+                <div ref={bottom} id="bottom"/>
 
             </div>
         </section>
