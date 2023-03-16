@@ -8,6 +8,7 @@ import LoadingButton from "./LoadingButton";
 import GreyButton from "./GreyButton";
 import SideInfoCards from "./SideInfoCards";
 import VerticalNewsCard from "./VerticalNewsCard";
+import CreatorInfoCard from "./CreatorInfoCard";
 
 const Hero = () => {
 
@@ -90,57 +91,50 @@ const Hero = () => {
             </div>
 
             <div className="w-full">
-                <div className="flex justify-center items-center w-full py-20">
+                <div className="flex justify-center items-center w-full mt-20 mb-10">
                     <section className="bg-gray-100 flex flex-row flex-wrap mb-6 justify-between items-center">
 
-                        <div className="group cursor-pointer flex-1 min-w-[270px]" onClick={executeTopScroll}>
-                            <div className="flex-1 flex justify-center items-center flex-row m-3">
-                                <h4 className="font-poppins font-semibold xs:text-[30.89px] text-[25.89px] xs:leading-[53.16px] leading-[43.16px] text-gray-600">
-                                    В начало
-                                </h4>
-                                <img src={arrowUp} alt="arrow-up" className="ml-1 transform w-[23px] h-[23px] object-contain group-hover:translate-x-2 group-hover:-translate-y-1" />
-                            </div>
-                        </div>
+                        <div className="w-full flex flex-wrap justify-center">
+                            <div className="flex ss:flex-row flex-col">
+                                <div className="group cursor-pointer flex-1 min-w-[200px] mx-10 my-5" onClick={executeTopScroll}>
+                                    <GreyButton title={'В начало'}/>
+                                </div>
 
-                        <div className="group cursor-pointer flex-1 min-w-[200px] mx-10" onClick={showLessNews}>
-                            <div className={``}>
-                                {
-                                    !btnLoaderLessVisible ? <GreyButton title={'Показать меньше'}/> : <LoadingButton title={'Загрузка...'}/>
-                                }
+                                <div className="group cursor-pointer flex-1 min-w-[200px] mx-10 my-5" onClick={showLessNews}>
+                                    {!btnLoaderLessVisible ? <GreyButton title={'Показать меньше'}/> : <LoadingButton title={'Загрузка...'}/>}
+                                </div>
                             </div>
-                        </div>
+                            <div className="flex ss:flex-row flex-col">
+                                <div className="group cursor-pointer flex-1 min-w-[200px] mx-10 my-5" onClick={showMoreNews}>
+                                    {!btnLoaderMoreVisible ? <GreyButton title={'Загрузить ещё'}/> : <LoadingButton title={'Загрузка...'}/>}
+                                </div>
 
-                        <div className="group cursor-pointer flex-1 min-w-[200px] mx-10" onClick={showMoreNews}>
-                            <div className={``}>
-                                {
-                                    !btnLoaderMoreVisible ? <GreyButton title={'Загрузить ещё'}/> : <LoadingButton title={'Загрузка...'}/>
-                                }
-                            </div>
-                        </div>
-
-                        <div className="group cursor-pointer flex-1 min-w-[270px]" onClick={executeBottomScroll}>
-                            <div className="flex-1 flex justify-center items-center flex-row m-3">
-                                <img src={arrowUp} alt="arrow-up" className="rotate-180 group-hover:-translate-x-1.5 group-hover:translate-y-0.5 mr-1" />
-                                <h4 className="font-poppins font-semibold xs:text-[30.89px] text-[25.89px] xs:leading-[53.16px] leading-[43.16px] text-gray-600">
-                                    В конец
-                                </h4>
+                                <div className="group cursor-pointer flex-1 min-w-[200px] mx-10 my-5" onClick={executeBottomScroll}>
+                                    <GreyButton title={'В конец'}/>
+                                </div>
                             </div>
                         </div>
 
                     </section>
                 </div>
 
-                <div className="mb-20">
+                <div className="mb-20 w-[90%] m-auto">
                     <h1 className="font-poppins font-semibold ss:text-[72px] ultraSmall:text-[45px] text-[52px] text-gray-700 ss:leading-[100.8px] leading-[75px] text-center">
                         Последние новости
                     </h1>
                 </div>
 
-                <div className="flex flex-wrap justify-center w-full">
-                    {newsFromWebsite.map((card) => <VerticalNewsCard key={card.id} {...card} />)}
+                <div className="w-full flex justify-center">
+                    <div className="w-[80%] columns-1 ss:columns-1 md:columns-2 lg:columns-3">
+                        {newsFromWebsite.map((card, index) => <VerticalNewsCard elIndex={index} key={card.id} {...card} />)}
+                    </div>
                 </div>
 
-                <div id="preFooter" className="flex md:flex-row justify-evenly ultraSmall:flex-col mt-20">
+                <div>
+                    <CreatorInfoCard />
+                </div>
+
+                <div id="preFooter" className="flex md:flex-row justify-evenly ultraSmall:flex-col mt-20 bg-gray-200 pt-10">
                     <div className="flex flex-col items-center p-10 sm:justify-center sm:pt-0">
                         <div>
                             <a href="/">

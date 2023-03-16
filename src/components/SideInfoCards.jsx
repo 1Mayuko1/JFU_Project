@@ -149,6 +149,28 @@ const SideInfoCards = () => {
                     </div>
                 </div>
 
+                <div className="max-w-sm bg-gray-200 border-2 border-gray-700 rounded-lg my-5">
+                    <div className="p-5">
+                        <h5 className="font-poppins mb-2 text-2xl font-bold tracking-tight text-gray-700">
+                            Наши проекты
+                        </h5>
+                        <p className="mb-3 font-normal text-gray-700 text-[18px]">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A quisquam reprehenderit tempora?
+                        </p>
+                        <p className="mb-3 font-normal text-gray-700 text-[18px]">
+                            At delectus deleniti illo obcaecati porro sunt, totam.
+                        </p>
+                    </div>
+                    <div className="flex flex-row w-full">
+                        <div className="w-[50%]">
+                            <img className="w-full h-full rounded-md object-cover" src="https://web.archive.org/web/20211026134048im_/https://www.jewishkiev.com.ua/images/stories/banner/banner_museum.jpg" alt="image"/>
+                        </div>
+                        <div className="w-[50%]">
+                            <img className="w-full h-full rounded-md object-cover" src="https://web.archive.org/web/20211026134048im_/https://www.jewishkiev.com.ua/images/stories/banner/jew-fund.png" alt="image"/>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
     );

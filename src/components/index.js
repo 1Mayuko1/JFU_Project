@@ -8,9 +8,7 @@ import GreyButton from './GreyButton'
 import LoadingButton from './LoadingButton'
 import SideInfoCards from "./SideInfoCards";
 import VerticalNewsCard from "./VerticalNewsCard";
-
-// import HorizontalNewsCard from './Modal'
-
+import CreatorInfoCard from "./CreatorInfoCard";
 
 export {
     Layout,
@@ -23,4 +21,5 @@ export {
     GreyButton,
     SideInfoCards,
     VerticalNewsCard,
+    CreatorInfoCard,
 }
