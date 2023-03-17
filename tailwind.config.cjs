@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin');
+
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
@@ -37,5 +39,10 @@ module.exports = {
       xxl: "2560px",
     },
   },
-  plugins: [require("@tailwindcss/aspect-ratio")]
+  plugins: [
+      require("@tailwindcss/aspect-ratio"),
+      plugin(function({ addVariant }) {
+        addVariant('current', '&.active');
+      })
+  ]
 };

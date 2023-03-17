@@ -1,10 +1,9 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {jewishStarIcon} from "../assets";
 import styles from "../style";
 import {bottomLinks, contacts, newsFromWebsite, worldPics} from "../constants/constants";
 import CarouselComponent from "./CarouselComponent";
 import HorizontalNewsCard from "./HorizontalNewsCard";
-import LoadingButton from "./LoadingButton";
 import GreyButton from "./GreyButton";
 import SideInfoCards from "./SideInfoCards";
 import VerticalNewsCard from "./VerticalNewsCard";
@@ -12,17 +11,13 @@ import CreatorInfoCard from "./CreatorInfoCard";
 import SideInfoBottomVersCards from "./SideInfoBottomVersCards";
 
 const Hero = () => {
-
-    const [btnLoaderMoreVisible, setBtnLoaderMoreVisible] = useState(false)
-    const [btnLoaderLessVisible, setBtnLoaderLessVisible] = useState(false)
-    const [visibleItems, setVisibleItems] = useState(5)
     const [pageTabNumber, setPageTabNumber] = useState(1)
 
     const top = useRef(null)
-    const bottom = useRef(null)
+    // const lastNews = useRef(null)
 
     const executeTopScroll = () => top.current.scrollIntoView()
-    const executeBottomScroll = () => bottom.current.scrollIntoView()
+    // const executeLastNewsScroll = () => lastNews.current.scrollIntoView()
 
     const numbersArray = () => {
         let numOfElement = newsFromWebsite.length
@@ -52,28 +47,28 @@ const Hero = () => {
         return arr.slice(start + 1, end + 1);
     }
 
-    const showNextTabOfNews = () => {
-        if (visibleItems !== newsFromWebsite.length) {
-            setBtnLoaderMoreVisible(true)
-            setTimeout(() => {
-                setBtnLoaderMoreVisible(false)
-                setVisibleItems((prevState) => prevState + 2)
-            }, 2000);
-        }
-    }
-
-    const showPrevTabOfNews = () => {
-        if(visibleItems > 2) {
-            setBtnLoaderLessVisible(true)
-            setTimeout(() => {
-                setBtnLoaderLessVisible(false)
-                setVisibleItems((prevState) => prevState - 2)
-            }, 2000);
-        }
-    }
+    // const showNextTabOfNews = () => {
+    //     if (visibleItems !== newsFromWebsite.length) {
+    //         setBtnLoaderMoreVisible(true)
+    //         setTimeout(() => {
+    //             setBtnLoaderMoreVisible(false)
+    //             setVisibleItems((prevState) => prevState + 2)
+    //         }, 2000);
+    //     }
+    // }
+    //
+    // const showPrevTabOfNews = () => {
+    //     if(visibleItems > 2) {
+    //         setBtnLoaderLessVisible(true)
+    //         setTimeout(() => {
+    //             setBtnLoaderLessVisible(false)
+    //             setVisibleItems((prevState) => prevState - 2)
+    //         }, 2000);
+    //     }
+    // }
 
     return (
-        <section ref={top} className={`bg-gray-200 bg-opacity-50 relative z-[1]`}>
+        <section className={`bg-gray-200 bg-opacity-50 relative z-[1]`}>
             <div className={``}>
                 <div className="flex absolute z-[3] w-full mt-[16%]">
                     <div className="flex flex-col justify-between items-center w-full relative z-[1]">
@@ -87,7 +82,7 @@ const Hero = () => {
                             Інформаційний портал Єврейського фонду в Україні
                         </p>
 
-                        <a className="cursor-pointer mt-20 animate-bounce" href={'#ScrollToNews'}>
+                        <a className="cursor-pointer mt-20 animate-bounce" onClick={executeTopScroll}>
                             <div className="rounded-full w-[40px] h-[40px]">
                                 <svg className="w-[40px] h-[40px] mt-1.5" width="800px" height="800px" viewBox="0 0 24 24" fill="#4e4e4e" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M12 4L12 20M12 20L6 14M12 20L18 14" stroke="#4e4e4e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="#4e4e4e"/>
@@ -101,7 +96,7 @@ const Hero = () => {
                     <CarouselComponent />
                 </div>
 
-                <div id={'ScrollToNews'} className="mt-[5%]">
+                <div ref={top} className="mt-[5%]">
                     <h1 className="font-poppins font-semibold ss:text-[72px] ultraSmall:text-[45px] text-[52px] text-gray-700 ss:leading-[100.8px] leading-[75px] text-center">
                         Главная
                     </h1>
@@ -112,7 +107,7 @@ const Hero = () => {
                         <div className="flex flex-wrap justify-center w-full h-full">
                             {
                                 pageTabNumber === 1 ?
-                                    newsFromWebsite.slice(0, visibleItems).map((card, index) => {
+                                    newsFromWebsite.slice(0, 5).map((card, index) => {
                                         return (
                                             <HorizontalNewsCard imgSource={worldPics} index={index} key={card.id} {...card} />
                                         )
@@ -154,16 +149,20 @@ const Hero = () => {
                                                             )
                                                         }
                                                         return (
-                                                            <button key={index} onClick={() => setPageTabNumber(el)} className={`${el === pageTabNumber ? "active active:bg-gray-700" : ""} cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0`}>
-                                                                <p>{el}</p>
+                                                            <button key={index} onClick={() => {setPageTabNumber(el); executeTopScroll()}} className={`${el === pageTabNumber ? "active [&.active]:bg-[#C5D9AB]" : ""} cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0`}>
+                                                                {/*<a href={'#ScrollToMainNews'}>*/}
+                                                                    <p>{el}</p>
+                                                                {/*</a>*/}
                                                             </button>
                                                         )
                                                     })
                                                 :
                                                     lengthOfNews(numbersArray()).map((el, index) => {
                                                         return (
-                                                            <button key={index} onClick={() => setPageTabNumber(el)} className={`${el === pageTabNumber ? "active active:bg-gray-700" : ""} cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0`}>
-                                                                <p>{el}</p>
+                                                            <button key={index} onClick={() => {setPageTabNumber(el); executeTopScroll()}} className={`${el === pageTabNumber ? "active [&.active]:bg-[#C5D9AB]" : ""} cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0`}>
+                                                                {/*<a href={'#ScrollToMainNews'}>*/}
+                                                                    <p>{el}</p>
+                                                                {/*</a>*/}
                                                             </button>
                                                         )
                                                     })
@@ -184,32 +183,6 @@ const Hero = () => {
                 </div>
 
                 <div className="w-full">
-                    <div className="flex justify-center items-center w-full mt-20 mb-10">
-                        <section className="bg-gray-100 flex flex-row flex-wrap mb-6 justify-between items-center">
-
-                            <div className="w-full flex flex-wrap justify-center">
-                                <div className="flex ss:flex-row flex-col">
-                                    <div className="group cursor-pointer flex-1 min-w-[200px] mx-10 my-5" onClick={executeTopScroll}>
-                                        <GreyButton title={'В начало'}/>
-                                    </div>
-
-                                    <div className="group cursor-pointer flex-1 min-w-[200px] mx-10 my-5" onClick={showPrevTabOfNews}>
-                                        {!btnLoaderLessVisible ? <GreyButton title={'Показать меньше'}/> : <LoadingButton title={'Загрузка...'}/>}
-                                    </div>
-                                </div>
-                                <div className="flex ss:flex-row flex-col">
-                                    <div className="group cursor-pointer flex-1 min-w-[200px] mx-10 my-5" onClick={showNextTabOfNews}>
-                                        {!btnLoaderMoreVisible ? <GreyButton title={'Загрузить ещё'}/> : <LoadingButton title={'Загрузка...'}/>}
-                                    </div>
-
-                                    <div className="group cursor-pointer flex-1 min-w-[200px] mx-10 my-5" onClick={executeBottomScroll}>
-                                        <GreyButton title={'В конец'}/>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </section>
-                    </div>
 
                     <div className="w-[100%]">
                         <SideInfoBottomVersCards />
@@ -223,11 +196,38 @@ const Hero = () => {
 
                     <div className="w-full flex justify-center">
                         <div className="w-[80%] columns-1 ss:columns-1 md:columns-2 lg:columns-3">
-                            {newsFromWebsite.map((card, index) => <VerticalNewsCard elIndex={index} key={card.id} {...card} />)}
+                            {newsFromWebsite.slice(0, 40).map((card, index) => <VerticalNewsCard elIndex={index} key={card.id} {...card} />)}
                         </div>
                     </div>
 
-                    <div className="mt-[10%]">
+                    <div className="flex justify-center items-center w-full mt-40">
+                        <section className="bg-gray-100 flex flex-row flex-wrap justify-between items-center">
+
+                            <div className="w-full flex flex-wrap justify-center">
+                                <div className="flex ss:flex-row flex-col">
+                                    <div className="group cursor-pointer flex-1 min-w-[200px] mx-10 my-5" onClick={executeTopScroll}>
+                                        <GreyButton title={'На верх'}/>
+                                    </div>
+
+                                    {/*    <div className="group cursor-pointer flex-1 min-w-[200px] mx-10 my-5" onClick={showPrevTabOfNews}>*/}
+                                    {/*        {!btnLoaderLessVisible ? <GreyButton title={'Показать меньше'}/> : <LoadingButton title={'Загрузка...'}/>}*/}
+                                    {/*    </div>*/}
+                                    {/*</div>*/}
+                                    {/*<div className="flex ss:flex-row flex-col">*/}
+                                    {/*    <div className="group cursor-pointer flex-1 min-w-[200px] mx-10 my-5" onClick={showNextTabOfNews}>*/}
+                                    {/*        {!btnLoaderMoreVisible ? <GreyButton title={'Загрузить ещё'}/> : <LoadingButton title={'Загрузка...'}/>}*/}
+                                    {/*    </div>*/}
+
+                                    <div className="group cursor-pointer flex-1 min-w-[200px] mx-10 my-5">
+                                        <GreyButton title={'К новостям'}/>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </section>
+                    </div>
+
+                    <div className="mt-[5%]">
                         <CreatorInfoCard />
                     </div>
 
@@ -323,7 +323,7 @@ const Hero = () => {
                             }
                         </div>
 
-                        <div ref={bottom} id="bottom"/>
+                        {/*<div ref={bottom} id="bottom"/>*/}
 
                     </div>
                 </div>
