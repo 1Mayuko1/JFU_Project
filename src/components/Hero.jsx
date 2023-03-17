@@ -193,7 +193,7 @@ const Hero = () => {
                         </div>
                     </div>
 
-                    <div className="flex justify-center items-center w-full mt-40">
+                    <div className="flex justify-center items-center w-full mt-20">
                         <section className="bg-gray-100 flex flex-row flex-wrap justify-between items-center">
 
                             <div className="w-full flex flex-wrap justify-center">
@@ -213,7 +213,7 @@ const Hero = () => {
                         </section>
                     </div>
 
-                    <div className="mt-[5%]">
+                    <div className="">
                         <CreatorInfoCard />
                     </div>
 
