@@ -141,13 +141,13 @@ const SideInfoBottomVersCards = () => {
                                 Облако тегов
                             </h5>
                         </div>
-                        <div className="flex flex-wrap items-center pb-5 justify-center">
+                        <div className="flex flex-wrap items-center justify-center pb-5">
                             {
                                 cloudTags.map((item) => {
                                     return (
                                         <div className="group cursor-pointer flex flex-row justify-center items-center px-1 py-3 ">
                                             <img src={jewishStarIcon} alt="icon" className="w-[18px] h-[18px] cursor-pointer mr-2"/>
-                                            <p className="font-poppins font-normal text-gray-700 text-[18px] group-hover:font-semibold">
+                                            <p className="font-poppins font-normal text-gray-700 text-[18px] group-hover:scale-[105%]">
                                                 {item.title}
                                             </p>
                                         </div>
