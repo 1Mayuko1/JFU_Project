@@ -4,9 +4,6 @@ import {Layout} from "./components"
 import {MainStackScreen, NewsDetails} from "./pages";
 import {NotFound} from "./pages";
 
-
-// TODO для стор створення поста: якшо нема  ddetails/contents треба додумати
-
 function App() {
     return (
         <div className="w-full overflow-hidden">
