@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {arrowDown, arrowUp, jewishStarIcon} from "../assets";
+import {jewishStarIcon} from "../assets";
 import styles from "../style";
 import {bottomLinks, contacts, newsFromWebsite, worldPics} from "../constants/constants";
 import CarouselComponent from "./CarouselComponent";
@@ -10,20 +10,13 @@ import SideInfoCards from "./SideInfoCards";
 import VerticalNewsCard from "./VerticalNewsCard";
 import CreatorInfoCard from "./CreatorInfoCard";
 import SideInfoBottomVersCards from "./SideInfoBottomVersCards";
-import {InfinitySpin} from "react-loader-spinner";
 
 const Hero = () => {
 
     const [btnLoaderMoreVisible, setBtnLoaderMoreVisible] = useState(false)
     const [btnLoaderLessVisible, setBtnLoaderLessVisible] = useState(false)
-    const [visibleItems, setVisibleItems] = useState(4)
-    const [load, setLoad] = useState(true)
-
-    useEffect(() => {
-        setInterval(() => {
-            setLoad(false)
-        }, 2000)
-    }, [])
+    const [visibleItems, setVisibleItems] = useState(5)
+    const [pageTabNumber, setPageTabNumber] = useState(1)
 
     const top = useRef(null)
     const bottom = useRef(null)
@@ -31,7 +24,35 @@ const Hero = () => {
     const executeTopScroll = () => top.current.scrollIntoView()
     const executeBottomScroll = () => bottom.current.scrollIntoView()
 
-    const showMoreNews = () => {
+    const numbersArray = () => {
+        let numOfElement = newsFromWebsite.length
+        if (numOfElement % 5 !== 0) {
+            numOfElement = Math.floor(numOfElement / 5) * 5;
+        }
+        return numOfElement / 5
+    }
+
+    const lengthOfNews = (length) => {
+        let arrayFromNumber = Array.from({ length }, (_, index) => index + 1);
+        if (arrayFromNumber.length < 6) {
+            return arrayFromNumber
+        } else {
+            let numsForArray = arrayFromNumber.map((el, index) => index + 1)
+            const firstThreeElementsOfNews = numsForArray.slice(0, 3);
+            const lastThreeElementsOfNews = numsForArray.slice(numsForArray.length - 4);
+            return [...firstThreeElementsOfNews, ...lastThreeElementsOfNews]
+        }
+    }
+
+
+    const trimArrayByPageNumber = (arr, num) => {
+        let maxLengthOfArray = 5
+        const start = Math.max(num, 0);
+        const end = Math.min(num + maxLengthOfArray, arr.length);
+        return arr.slice(start + 1, end + 1);
+    }
+
+    const showNextTabOfNews = () => {
         if (visibleItems !== newsFromWebsite.length) {
             setBtnLoaderMoreVisible(true)
             setTimeout(() => {
@@ -41,7 +62,7 @@ const Hero = () => {
         }
     }
 
-    const showLessNews = () => {
+    const showPrevTabOfNews = () => {
         if(visibleItems > 2) {
             setBtnLoaderLessVisible(true)
             setTimeout(() => {
@@ -89,13 +110,75 @@ const Hero = () => {
                 <div className="w-full flex justify-center items-center">
                     <div className="flex xl:flex-row flex-col pt-[5%] xl:w-[90%] w-[80%]">
                         <div className="flex flex-wrap justify-center w-full h-full">
-                            {newsFromWebsite.slice(0, visibleItems).map((card, index) => (
-                                <HorizontalNewsCard imgSource={worldPics} index={index} key={card.id} {...card} />
-                            ))
+                            {
+                                pageTabNumber === 1 ?
+                                    newsFromWebsite.slice(0, visibleItems).map((card, index) => {
+                                        return (
+                                            <HorizontalNewsCard imgSource={worldPics} index={index} key={card.id} {...card} />
+                                        )
+                                    })
+                                :
+                                    trimArrayByPageNumber(newsFromWebsite, pageTabNumber * 5).map((card, index) => {
+                                        return (
+                                            <HorizontalNewsCard imgSource={worldPics} index={index} key={card.id} {...card} />
+                                        )
+                                    })
                             }
                         </div>
                         <div className="xl:w-[20%] w-[100%]">
                             <SideInfoCards />
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div className="w-full flex items-center justify-center bg-gray-100 mt-[5%]">
+                        <div className="flex items-center">
+                            <div>
+                                <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm"
+                                     aria-label="Pagination">
+                                    <a href="#" className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0">
+                                        <span className="sr-only">Previous</span>
+                                        <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd"/>
+                                        </svg>
+                                    </a>
+                                    {
+                                        <div>
+                                            {
+                                                lengthOfNews(numbersArray()).length > 6 ?
+                                                    lengthOfNews(numbersArray()).map((el, index) => {
+                                                        if (index === 3) {
+                                                            return (
+                                                                <span className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">...</span>
+                                                            )
+                                                        }
+                                                        return (
+                                                            <button key={index} onClick={() => setPageTabNumber(el)} className={`${el === pageTabNumber ? "active active:bg-gray-700" : ""} cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0`}>
+                                                                <p>{el}</p>
+                                                            </button>
+                                                        )
+                                                    })
+                                                :
+                                                    lengthOfNews(numbersArray()).map((el, index) => {
+                                                        return (
+                                                            <button key={index} onClick={() => setPageTabNumber(el)} className={`${el === pageTabNumber ? "active active:bg-gray-700" : ""} cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0`}>
+                                                                <p>{el}</p>
+                                                            </button>
+                                                        )
+                                                    })
+                                            }
+                                        </div>
+
+                                    }
+                                    <span className="sr-only">Next</span>
+                                    <a href="#" className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0">
+                                        <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd"/>
+                                        </svg>
+                                    </a>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -110,12 +193,12 @@ const Hero = () => {
                                         <GreyButton title={'В начало'}/>
                                     </div>
 
-                                    <div className="group cursor-pointer flex-1 min-w-[200px] mx-10 my-5" onClick={showLessNews}>
+                                    <div className="group cursor-pointer flex-1 min-w-[200px] mx-10 my-5" onClick={showPrevTabOfNews}>
                                         {!btnLoaderLessVisible ? <GreyButton title={'Показать меньше'}/> : <LoadingButton title={'Загрузка...'}/>}
                                     </div>
                                 </div>
                                 <div className="flex ss:flex-row flex-col">
-                                    <div className="group cursor-pointer flex-1 min-w-[200px] mx-10 my-5" onClick={showMoreNews}>
+                                    <div className="group cursor-pointer flex-1 min-w-[200px] mx-10 my-5" onClick={showNextTabOfNews}>
                                         {!btnLoaderMoreVisible ? <GreyButton title={'Загрузить ещё'}/> : <LoadingButton title={'Загрузка...'}/>}
                                     </div>
 

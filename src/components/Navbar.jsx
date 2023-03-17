@@ -98,10 +98,10 @@ const Navbar = () => {
                         </ul>
 
                         {/*DropDown*/}
-                        <div className={`${!dropDownVisible ? "hidden" : "flex"} p-6 bg-gray-300 absolute top-20 right-40 mx-4 my-2 min-w-[140px] rounded-xl sidebar z-[3]`}>
+                        <div className={`${!dropDownVisible ? "hidden" : "flex"} p-3 bg-gray-300 absolute top-20 right-40 mx-4 my-2 min-w-[140px] rounded-xl sidebar z-[3]`}>
                             <ul className="list-none flex justify-end items-center flex-1 flex-col">
                                 {dropDownNavLinks.map((nav, index) => (
-                                    <li key={nav.id} className={`w-full text-center rounded-lg px-2 py-2 hover:bg-gray-400 font-poppins font-medium cursor-pointer text-gray-700 text-[16px] ${index === dropDownNavLinks.length - 1 ? "mb-0" : "mb-4"}`} onClick={() => setDropDownVisible(false)}>
+                                    <li key={nav.id} className={`w-full text-center rounded-lg border-b-2 border-gray-400 border-opacity-20 px-5 py-2 hover:bg-gray-400 font-poppins cursor-pointer text-gray-700 text-[16px] ${index === dropDownNavLinks.length - 1 ? "mb-0" : "mb-4"}`} onClick={() => setDropDownVisible(false)}>
                                         <Link to={`/${nav.id}`}>{nav.title}</Link>
                                     </li>
                                 ))}
@@ -112,7 +112,7 @@ const Navbar = () => {
                         <div className={`${!dropDownMenuVisible ? "hidden" : "flex"} p-3 bg-gray-300 absolute top-20 right-40 mx-4 my-2 min-w-[140px] rounded-xl sidebar z-[4]`}>
                             <ul className="list-none flex justify-end items-center flex-1 flex-col">
                                 {dropDownNavLinks.map((nav, index) => (
-                                    <li key={nav.id} className={`w-full text-center rounded-lg px-2 py-1 hover:bg-gray-400 font-poppins font-medium cursor-pointer text-gray-700 text-[16px] ${index === dropDownNavLinks.length - 1 ? "mb-0" : "mb-3"}`} onClick={() => {setToggleMenu(false); setDropDownMenuVisible(false)}}>
+                                    <li key={nav.id} className={`w-full text-center rounded-lg border-b-2 border-gray-400 border-opacity-20 px-2 py-1 hover:bg-gray-400 font-poppins font-medium cursor-pointer text-gray-700 text-[16px] ${index === dropDownNavLinks.length - 1 ? "mb-0" : "mb-3"}`} onClick={() => {setToggleMenu(false); setDropDownMenuVisible(false)}}>
                                         <Link to={`/${nav.id}`}>{nav.title}</Link>
                                     </li>
                                 ))}
@@ -129,7 +129,7 @@ const Navbar = () => {
                                         </li>
                                     </div>
                                     {simpleNavLinks.map((nav, index) => (
-                                        <li key={nav.id} className={`w-full text-center rounded-lg px-1 py-1 hover:bg-gray-400 font-poppins font-medium cursor-pointer text-gray-700 text-[16px] mb-4`} onClick={() => {setToggleMenu(false); setDropDownMenuVisible(false)}}>
+                                        <li key={nav.id} className={`w-full text-center rounded-lg px-3 py-1 hover:bg-gray-400 font-poppins font-medium cursor-pointer text-gray-700 text-[16px] mb-4`} onClick={() => {setToggleMenu(false); setDropDownMenuVisible(false)}}>
                                             <Link to={`/${nav.id}`}>{nav.title}</Link>
                                         </li>
                                     ))}
