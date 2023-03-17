@@ -22,24 +22,22 @@ const SideInfoCards = () => {
 
     return (
         <section>
-            <div className="hidden xl:block w-full">
-                <div className="max-w-sm p-6 bg-gray-200 border-2 border-gray-700 rounded-lg mb-5">
+            <div className="hidden xl:w-full xl:block">
+                <div className="max-w-sm p-6 bg-gray-200 shadow-2xl rounded-lg mb-5">
                     <h5 className="font-poppins mb-2 text-2xl font-bold tracking-tight text-gray-700">
                         Еврейский фонд в украине
                     </h5>
                     <p className="mb-3 font-normal text-gray-700 text-[18px] font-poppins pb-5 pt-4">
                         Ключевые идеи организации — поддержка и возрождение еврейской культуры и общинной жизни в стране. Еврейский фонд организовывает и финансирует проекты, направленные на развитие еврейской культуры и поддержку общин.
                     </p>
-                    <div className="group cursor-pointer flex-1 min-w-[200px] bg-gray-400 bg-opacity-60 rounded-lg border">
-                        <div className="flex-1 flex justify-center items-center flex-row m-3">
-                            <button type="button" className="font-poppins text-sm font-medium text-gray-700 outline-none items-center text-gray-700 font-semibold">
-                                Пожертвовать
-                            </button>
+                    <div className="group cursor-pointer flex-1 min-w-[200px] bg-opacity-60 rounded-lg">
+                        <div className="group cursor-pointer flex-1 min-w-[200px] mx-10">
+                            <GreyButton title={'Пожертвовать'}/>
                         </div>
                     </div>
                 </div>
 
-                <div className="cursor-pointer max-w-sm bg-gray-200 border-2 border-gray-700 rounded-lg my-5">
+                <div className="cursor-pointer max-w-sm bg-gray-200 shadow-2xl rounded-lg my-5">
                     <a href="https://www.jhf.nl/">
                         <div className="">
                             <div>
@@ -57,7 +55,7 @@ const SideInfoCards = () => {
                     </a>
                 </div>
 
-                <div className="max-w-sm bg-gray-200 border-2 border-gray-700 rounded-lg my-5">
+                <div className="max-w-sm bg-gray-200 shadow-2xl rounded-lg my-5">
                     <a href="#">
                         <div className="flex flex-row w-full">
                             <div className="w-[50%]">
@@ -81,7 +79,7 @@ const SideInfoCards = () => {
                     </a>
                 </div>
 
-                <div className="max-w-sm bg-gray-200 border-2 border-gray-700 rounded-lg my-5">
+                <div className="max-w-sm bg-gray-200 shadow-2xl rounded-lg my-5">
                     <div className="p-5">
                         <h5 className="font-poppins mb-2 text-2xl font-bold tracking-tight text-gray-700 text-center">
                             Найти новость
@@ -105,7 +103,7 @@ const SideInfoCards = () => {
                     </div>
                 </div>
 
-                <div className="max-w-sm bg-gray-200 border-2 border-gray-700 rounded-lg my-5">
+                <div className="max-w-sm bg-gray-200 shadow-2xl rounded-lg my-5">
                     <div className="pt-10 pb-2">
                         <h5 className="font-poppins mb-2 text-2xl font-bold tracking-tight text-gray-700 text-center">
                             Меню сайта
@@ -127,7 +125,7 @@ const SideInfoCards = () => {
                     </div>
                 </div>
 
-                <div className="max-w-sm bg-gray-200 border-2 border-gray-700 rounded-lg my-5">
+                <div className="max-w-sm bg-gray-200 shadow-2xl rounded-lg my-5">
                     <div className="pt-10 pb-2">
                         <h5 className="font-poppins mb-2 text-2xl font-bold tracking-tight text-gray-700 text-center">
                             Облако тегов
@@ -149,7 +147,7 @@ const SideInfoCards = () => {
                     </div>
                 </div>
 
-                <div className="max-w-sm bg-gray-200 border-2 border-gray-700 rounded-lg my-5">
+                <div className="max-w-sm bg-gray-200 shadow-2xl rounded-lg my-5">
                     <div className="p-5">
                         <h5 className="font-poppins mb-2 text-2xl font-bold tracking-tight text-gray-700">
                             Наши проекты

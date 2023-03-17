@@ -143,6 +143,11 @@ select:-webkit-autofill:focus {
   filter: blur(123px);
 }
 
+.gray__gradient {
+    background: rgb(209,210,219);
+    background: linear-gradient(264deg, rgba(209,210,219,1) 0%, rgba(156,163,175,1) 78%);
+}
+
 .pink__gradient {
   background: linear-gradient(90deg, #f4c4f3 0%, #fc67fa 100%);
   filter: blur(900px);
@@ -179,6 +184,8 @@ input[type="search"]::-webkit-search-results-decoration {
         }
     }
 }
+
+
 
 /*.fade-anim img {*/
 /*    animation: fadeAnim 0.5s ease;*/

@@ -9,6 +9,7 @@ import GreyButton from "./GreyButton";
 import SideInfoCards from "./SideInfoCards";
 import VerticalNewsCard from "./VerticalNewsCard";
 import CreatorInfoCard from "./CreatorInfoCard";
+import SideInfoBottomVersCards from "./SideInfoBottomVersCards";
 
 const Hero = () => {
 
@@ -53,14 +54,15 @@ const Hero = () => {
                     <h1 className="font-poppins font-semibold ss:text-[72px] ultraSmall:text-[45px] text-[52px] max-w-[90%] text-gray-700 ss:leading-[100.8px] leading-[75px] text-center">
                         Jewish Kyiv
                     </h1>
-                    <p className={`${styles.paragraph} ss:max-w-[500px] max-w-[300px] mt-5 text-center`}>
+                    <p className="font-poppins font-semibold text-gray-700 ss:max-w-[500px] max-w-[300px] mt-5 text-center text-[28px]">
                         Інформаційний портал Єврейського фонду в Україні
                     </p>
 
-                    <a className="cursor-pointer mt-20" href={'#ScrollToNews'}>
-                        <div className="border-[2px] border-[#616161] rounded-full w-[40px] h-[40px]"
-                             onClick={() => {console.log('arrowDowns')}}>
-                            <img src={arrowDown} alt="arrow" className="w-full h-[25px] mt-1.5"/>
+                    <a className="cursor-pointer mt-20 animate-bounce" href={'#ScrollToNews'}>
+                        <div className="rounded-full w-[40px] h-[40px]">
+                            <svg className="w-[40px] h-[40px] mt-1.5" width="800px" height="800px" viewBox="0 0 24 24" fill="#4e4e4e" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 4L12 20M12 20L6 14M12 20L18 14" stroke="#4e4e4e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="#4e4e4e"/>
+                            </svg>
                         </div>
                     </a>
                 </div>
@@ -118,7 +120,11 @@ const Hero = () => {
                     </section>
                 </div>
 
-                <div className="mb-20 w-[90%] m-auto">
+                <div className="w-[100%]">
+                    <SideInfoBottomVersCards />
+                </div>
+
+                <div className="mb-20 w-[90%] m-auto mt-[5%]">
                     <h1 className="font-poppins font-semibold ss:text-[72px] ultraSmall:text-[45px] text-[52px] text-gray-700 ss:leading-[100.8px] leading-[75px] text-center">
                         Последние новости
                     </h1>
@@ -130,7 +136,7 @@ const Hero = () => {
                     </div>
                 </div>
 
-                <div>
+                <div className="mt-[10%]">
                     <CreatorInfoCard />
                 </div>
 

@@ -6,10 +6,10 @@ const CreatorInfoCard = () => {
         <section>
             <div className="w-full flex justify-center mt-[5%]">
                 <div className="w-[80%] semiLgXl:w-[65%] flex flex-col items-center bg-gray-100 rounded-xl shadow-xl sm:flex-row shadow-2xl">
-                    <img className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/ArkadyMonastyrsky.jpg/274px-ArkadyMonastyrsky.jpg" alt="image" />
-                    <div className="flex flex-col justify-between px-4 leading-normal ultraSmall:py-10">
+                    <img className="h-auto object-cover w-full rounded-t-lg md:w-48 md:rounded-none md:rounded-l-lg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/ArkadyMonastyrsky.jpg/274px-ArkadyMonastyrsky.jpg" alt="image" />
+                    <div className="flex flex-col justify-between mx-4 leading-normal my-5 sm:my-0">
                         <h5 className="mb-3 font-poppins text-gray-700 text-[16px] font-semibold text-gray-700">
-                            Аркадий Ильич Монастырский
+                            Основатель: Аркадий Ильич Монастырский
                         </h5>
                         <p className="font-normal text-gray-700 text-[14px] font-poppins">
                             Украинский общественный деятель. Президент Еврейского форума Украины, председатель Правления Еврейского фонда Украины, председатель Общественного совета при Министерстве образования и науки Украины. Один из основателей общественного движения за возрождение еврейской культуры на Украине. Являлся послом мира Всемирного совета мира.

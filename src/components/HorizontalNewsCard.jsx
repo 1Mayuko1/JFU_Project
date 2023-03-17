@@ -33,27 +33,29 @@ const HorizontalNewsCard = ({content, title, date, mainImage, paragraphs, detail
         }
     }
 
+    const [showDetails, setShowDetails] = useState(false);
+
     return (
         <div className="flex flex-col w-full items-center justify-center">
-            <div className={`${detailsVisible ? "my-0 rounded-t-lg border-2 border-b-0 border-[#616161]" : "mb-5 rounded-lg border-2 border-[#616161]"} w-[95%] cursor-pointer flex flex-col lg:flex-row items-center border bg-gray-200 delay-100 duration-500`}>
+            <div className={`${detailsVisible ? "my-0 rounded-t-lg" : "rounded-lg mb-5"} w-[95%] cursor-pointer flex flex-col lg:flex-row items-center bg-gray-100 shadow-lg delay-100 duration-500`}>
                 <div className={`h-full lg:w-[50%] ultraSmall:w-full`}>
-                    <img className={`object-cover object-top w-full h-full rounded`} src={mainImage} alt="image" />
+                    <img className={`object-cover object-top w-full h-full rounded-l`} src={mainImage} alt="image" />
                 </div>
                 <div className="flex flex-col w-full md:h-full md:justify-between">
                     <div className="flex flex-col justify-between p-4 leading-normal w-full">
-                        <p className="font-semibold font-normal lg:text-left text-center text-[30px] leading-[40px] text-gray-700 my-2">
+                        <p className="font-semibold font-normal lg:text-left text-center text-[20px] leading-[30px] ss:text-[30px] ss:leading-[40px] text-gray-700 my-2">
                             {trimTextToLength(title, 100)}
                         </p>
-                        <p className="font-poppins font-normal text-[22px] leading-[28px] text-gray-700 my-2">
+                        <p className="font-poppins font-normal text-[18px] leading-[24px] ss:text-[22px] ss:leading-[28px] text-gray-700 my-2">
                             {trimTextToLength(content, 700)}
                         </p>
-                        <p className="font-poppins font-normal text-[22px] leading-[28px] text-gray-700 my-2">
+                        <p className="font-poppins font-normal text-[18px] leading-[24px] ss:text-[22px] ss:leading-[28px] text-gray-700 my-2">
                             {trimTextToLength(details, 700)}
                         </p>
                     </div>
                     <div className={`flex flex-col lg:flex-row md:justify-between justify-center items-center mb-3`}>
                         <div className={`${paragraphs.length === 0 ? "hidden" : 'flex'} lg:mb-0 mb-5 lg:ml-0 ml-5 flex flex-row lg:pl-5 flex justify-center items-center`} onClick={checkDetailsVisible}>
-                            <p className="font-poppins font-normal text-[22px] text-gray-700">
+                            <p className="font-poppins font-normal text-[18px] ss:text-[22px] text-gray-700">
                                 {detailsVisible ? "Скрыть" : "Подробнее"}
                             </p>
                             <img src={detailsVisible ? chevronDown : chevronRight} alt="arrowUp" className="w-[15px] h-[15px] flex justify-center items-center ml-1 group-hover:translate-x-1 group-hover:-translate-y-0.5 delay-300 duration-300"/>
@@ -64,7 +66,7 @@ const HorizontalNewsCard = ({content, title, date, mainImage, paragraphs, detail
                             </div>
                         </div>
                         <div className={`${paragraphs ? "ml-5" : 'ml-0'} lg:pr-10`}>
-                            <p className="font-poppins font-normal text-[20px] text-gray-700">
+                            <p className="font-poppins font-normal text-[18px] ss:text-[20px] text-gray-700">
                                 {formatDate(date)}
                             </p>
                         </div>
@@ -72,10 +74,10 @@ const HorizontalNewsCard = ({content, title, date, mainImage, paragraphs, detail
                 </div>
             </div>
 
-            <div className={`${detailsVisible ? 'border-2 border-t-0 border-[#616161]' : 'hidden'} w-[95%] -mt-[1px] mb-5 rounded-b-lg flex flex-col cursor-pointer items-center border bg-gray-200 delay-100 duration-500`}>
+            <div className={`${detailsVisible ? '-mt-[1px]' : 'hidden'} w-[95%] mb-5 rounded-b-lg flex flex-col cursor-pointer items-center bg-gray-100 shadow-lg delay-100 duration-500`}>
                 {paragraphs.map((item, index) => {
                     return (
-                        <p key={new Date() + `${index}`} className={`px-5 py-6 font-poppins font-normal text-[25px] text-gray-700`}>
+                        <p key={new Date() + `${index}`} className={`px-5 py-6 font-poppins font-normal text-[18px] leading-[24px] ss:text-[22px] ss:leading-[28px] text-gray-700`}>
                             {item}
                         </p>
                     )

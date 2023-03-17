@@ -9,6 +9,7 @@ import LoadingButton from './LoadingButton'
 import SideInfoCards from "./SideInfoCards";
 import VerticalNewsCard from "./VerticalNewsCard";
 import CreatorInfoCard from "./CreatorInfoCard";
+import SideInfoBottomVersCards from "./SideInfoBottomVersCards";
 
 export {
     Layout,
@@ -22,4 +23,5 @@ export {
     SideInfoCards,
     VerticalNewsCard,
     CreatorInfoCard,
+    SideInfoBottomVersCards,
 }
