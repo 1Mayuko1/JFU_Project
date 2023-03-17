@@ -14,10 +14,7 @@ const Hero = () => {
     const [pageTabNumber, setPageTabNumber] = useState(1)
 
     const top = useRef(null)
-    // const lastNews = useRef(null)
-
     const executeTopScroll = () => top.current.scrollIntoView()
-    // const executeLastNewsScroll = () => lastNews.current.scrollIntoView()
 
     const numbersArray = () => {
         let numOfElement = newsFromWebsite.length
@@ -47,30 +44,28 @@ const Hero = () => {
         return arr.slice(start + 1, end + 1);
     }
 
-    // const showNextTabOfNews = () => {
-    //     if (visibleItems !== newsFromWebsite.length) {
-    //         setBtnLoaderMoreVisible(true)
-    //         setTimeout(() => {
-    //             setBtnLoaderMoreVisible(false)
-    //             setVisibleItems((prevState) => prevState + 2)
-    //         }, 2000);
-    //     }
-    // }
-    //
-    // const showPrevTabOfNews = () => {
-    //     if(visibleItems > 2) {
-    //         setBtnLoaderLessVisible(true)
-    //         setTimeout(() => {
-    //             setBtnLoaderLessVisible(false)
-    //             setVisibleItems((prevState) => prevState - 2)
-    //         }, 2000);
-    //     }
-    // }
+
+    const showNextTabOfNews = () => {
+        if (numbersArray() !== pageTabNumber) {
+            setPageTabNumber(prevState => prevState + 1)
+            executeTopScroll()
+        }
+    }
+
+    const showPrevTabOfNews = () => {
+        if (pageTabNumber !== 1) {
+            setPageTabNumber(prevState => prevState - 1)
+            executeTopScroll()
+        }
+    }
 
     return (
-        <section className={`bg-gray-200 bg-opacity-50 relative z-[1]`}>
-            <div className={``}>
-                <div className="flex absolute z-[3] w-full mt-[16%]">
+        <section className={`bg-gray-200 bg-opacity-50 relative`}>
+            <div id='header' className="min-h-screen">
+                <div className="absolute z-[0] w-full inset-0 object-cover opacity-60">
+                    <CarouselComponent />
+                </div>
+                <div className="flex relative z-[1] w-full pt-[16%]">
                     <div className="flex flex-col justify-between items-center w-full relative z-[1]">
                         <h1 className="font-poppins font-semibold ss:text-[72px] ultraSmall:text-[45px] text-[52px] max-w-[90%] text-gray-700 ss:leading-[100.8px] leading-[75px] text-center">
                             Інформаційний портал
@@ -82,20 +77,18 @@ const Hero = () => {
                             Інформаційний портал Єврейського фонду в Україні
                         </p>
 
-                        <a className="cursor-pointer mt-20 animate-bounce" onClick={executeTopScroll}>
+                        <div className="cursor-pointer mt-20 animate-bounce" onClick={executeTopScroll}>
                             <div className="rounded-full w-[40px] h-[40px]">
                                 <svg className="w-[40px] h-[40px] mt-1.5" width="800px" height="800px" viewBox="0 0 24 24" fill="#4e4e4e" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M12 4L12 20M12 20L6 14M12 20L18 14" stroke="#4e4e4e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="#4e4e4e"/>
                                 </svg>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div className="w-full inset-0 h-screen object-cover opacity-60">
-                    <CarouselComponent />
-                </div>
-
+            <div className="relative z-[5]">
                 <div ref={top} className="mt-[5%]">
                     <h1 className="font-poppins font-semibold ss:text-[72px] ultraSmall:text-[45px] text-[52px] text-gray-700 ss:leading-[100.8px] leading-[75px] text-center">
                         Главная
@@ -109,13 +102,13 @@ const Hero = () => {
                                 pageTabNumber === 1 ?
                                     newsFromWebsite.slice(0, 5).map((card, index) => {
                                         return (
-                                            <HorizontalNewsCard imgSource={worldPics} index={index} key={card.id} {...card} />
+                                            <HorizontalNewsCard imgSource={worldPics} index={index} key={new Date() + `${index}`} {...card} />
                                         )
                                     })
                                 :
                                     trimArrayByPageNumber(newsFromWebsite, pageTabNumber * 5).map((card, index) => {
                                         return (
-                                            <HorizontalNewsCard imgSource={worldPics} index={index} key={card.id} {...card} />
+                                            <HorizontalNewsCard imgSource={worldPics} index={index} key={new Date() + `${index}`} {...card} />
                                         )
                                     })
                             }
@@ -132,12 +125,12 @@ const Hero = () => {
                             <div>
                                 <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm"
                                      aria-label="Pagination">
-                                    <a href="#" className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0">
+                                    <div onClick={showPrevTabOfNews} className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0">
                                         <span className="sr-only">Previous</span>
                                         <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd"/>
                                         </svg>
-                                    </a>
+                                    </div>
                                     {
                                         <div>
                                             {
@@ -145,11 +138,11 @@ const Hero = () => {
                                                     lengthOfNews(numbersArray()).map((el, index) => {
                                                         if (index === 3) {
                                                             return (
-                                                                <span className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">...</span>
+                                                                <span key={new Date() + `${index}`} className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">...</span>
                                                             )
                                                         }
                                                         return (
-                                                            <button key={index} onClick={() => {setPageTabNumber(el); executeTopScroll()}} className={`${el === pageTabNumber ? "active [&.active]:bg-[#C5D9AB]" : ""} cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0`}>
+                                                            <button key={new Date() + `${index}`} onClick={() => {setPageTabNumber(el); executeTopScroll()}} className={`${el === pageTabNumber ? "active [&.active]:bg-gray-300" : ""} cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0`}>
                                                                 {/*<a href={'#ScrollToMainNews'}>*/}
                                                                     <p>{el}</p>
                                                                 {/*</a>*/}
@@ -159,7 +152,7 @@ const Hero = () => {
                                                 :
                                                     lengthOfNews(numbersArray()).map((el, index) => {
                                                         return (
-                                                            <button key={index} onClick={() => {setPageTabNumber(el); executeTopScroll()}} className={`${el === pageTabNumber ? "active [&.active]:bg-[#C5D9AB]" : ""} cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0`}>
+                                                            <button key={new Date() + `${index}`} onClick={() => {setPageTabNumber(el); executeTopScroll()}} className={`${el === pageTabNumber ? "active [&.active]:bg-gray-300" : ""} cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0`}>
                                                                 {/*<a href={'#ScrollToMainNews'}>*/}
                                                                     <p>{el}</p>
                                                                 {/*</a>*/}
@@ -171,11 +164,11 @@ const Hero = () => {
 
                                     }
                                     <span className="sr-only">Next</span>
-                                    <a href="#" className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0">
+                                    <div onClick={showNextTabOfNews} className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0">
                                         <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd"/>
                                         </svg>
-                                    </a>
+                                    </div>
                                 </nav>
                             </div>
                         </div>
@@ -196,7 +189,7 @@ const Hero = () => {
 
                     <div className="w-full flex justify-center">
                         <div className="w-[80%] columns-1 ss:columns-1 md:columns-2 lg:columns-3">
-                            {newsFromWebsite.slice(0, 40).map((card, index) => <VerticalNewsCard elIndex={index} key={card.id} {...card} />)}
+                            {newsFromWebsite.slice(0, 40).map((card, index) => <VerticalNewsCard elIndex={index} key={new Date() + `${index}`} {...card} />)}
                         </div>
                     </div>
 
@@ -205,22 +198,15 @@ const Hero = () => {
 
                             <div className="w-full flex flex-wrap justify-center">
                                 <div className="flex ss:flex-row flex-col">
+
                                     <div className="group cursor-pointer flex-1 min-w-[200px] mx-10 my-5" onClick={executeTopScroll}>
                                         <GreyButton title={'На верх'}/>
                                     </div>
 
-                                    {/*    <div className="group cursor-pointer flex-1 min-w-[200px] mx-10 my-5" onClick={showPrevTabOfNews}>*/}
-                                    {/*        {!btnLoaderLessVisible ? <GreyButton title={'Показать меньше'}/> : <LoadingButton title={'Загрузка...'}/>}*/}
-                                    {/*    </div>*/}
-                                    {/*</div>*/}
-                                    {/*<div className="flex ss:flex-row flex-col">*/}
-                                    {/*    <div className="group cursor-pointer flex-1 min-w-[200px] mx-10 my-5" onClick={showNextTabOfNews}>*/}
-                                    {/*        {!btnLoaderMoreVisible ? <GreyButton title={'Загрузить ещё'}/> : <LoadingButton title={'Загрузка...'}/>}*/}
-                                    {/*    </div>*/}
-
-                                    <div className="group cursor-pointer flex-1 min-w-[200px] mx-10 my-5">
+                                    <div onClick={executeTopScroll} className="group cursor-pointer flex-1 min-w-[200px] mx-10 my-5">
                                         <GreyButton title={'К новостям'}/>
                                     </div>
+
                                 </div>
                             </div>
 
@@ -290,9 +276,9 @@ const Hero = () => {
                                 </h3>
                             </div>
                             {
-                                contacts.map((item) => {
+                                contacts.map((item, index) => {
                                     return (
-                                        <div className="group cursor-pointer flex flex-row justify-center items-center pt-5 pb-3">
+                                        <div key={new Date() + `${index}`} className="group cursor-pointer flex flex-row justify-center items-center pt-5 pb-3">
                                             <img src={item.icon} alt="icon" className="w-[18px] h-[18px] cursor-pointer mr-2"/>
                                             <p className={`${styles.paragraph} group-hover:text-black`}>
                                                 {item.title}
@@ -310,9 +296,9 @@ const Hero = () => {
                                 </h3>
                             </div>
                             {
-                                bottomLinks.map((item) => {
+                                bottomLinks.map((item,index) => {
                                     return (
-                                        <div className="group cursor-pointer flex flex-row justify-center items-center p-3 ">
+                                        <div key={new Date() + `${index}`} className="group cursor-pointer flex flex-row justify-center items-center p-3 ">
                                             <img src={jewishStarIcon} alt="icon" className="w-[18px] h-[18px] cursor-pointer mr-2"/>
                                             <p className="font-poppins font-normal text-gray-700 text-[18px] group-hover:font-semibold">
                                                 {item.title}

@@ -121,9 +121,9 @@ const SideInfoBottomVersCards = () => {
                         </div>
                         <div className="flex flex-wrap sm:flex-col items-center pb-5 justify-center">
                             {
-                                bottomLinks.map((item) => {
+                                bottomLinks.map((item, index) => {
                                     return (
-                                        <div className="group cursor-pointer flex flex-row justify-center items-center p-3 ">
+                                        <div key={new Date() + `${index}`} className="group cursor-pointer flex flex-row justify-center items-center p-3 ">
                                             <img src={jewishStarIcon} alt="icon" className="w-[18px] h-[18px] cursor-pointer mr-2"/>
                                             <p className="font-poppins font-normal text-gray-700 text-[18px] group-hover:font-semibold">
                                                 {item.title}
@@ -143,9 +143,9 @@ const SideInfoBottomVersCards = () => {
                         </div>
                         <div className="flex flex-wrap items-center justify-center pb-5">
                             {
-                                cloudTags.map((item) => {
+                                cloudTags.map((item, index) => {
                                     return (
-                                        <div className="group cursor-pointer flex flex-row justify-center items-center px-1 py-3 ">
+                                        <div key={new Date() + `${index}`} className="group cursor-pointer flex flex-row justify-center items-center px-1 py-3 ">
                                             <img src={jewishStarIcon} alt="icon" className="w-[18px] h-[18px] cursor-pointer mr-2"/>
                                             <p className="font-poppins font-normal text-gray-700 text-[18px] group-hover:scale-[105%]">
                                                 {item.title}
