@@ -15,8 +15,8 @@ function App() {
                     <Route index element={<MainStackScreen />} />
                     <Route path="/home" element={<MainStackScreen />} />
                     <Route path="/news_details" element={<NewsDetails />} />
-                    <Route path="/*" element={<NotFound />} />
                 </Route>
+                <Route path="/*" element={<NotFound />} />
             </Routes>
         </div>
     )
