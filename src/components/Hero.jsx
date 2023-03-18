@@ -10,7 +10,6 @@ import VerticalNewsCard from "./VerticalNewsCard";
 import CreatorInfoCard from "./CreatorInfoCard";
 import SideInfoBottomVersCards from "./SideInfoBottomVersCards";
 import Loader from "./Loader";
-import {Link} from "react-router-dom";
 
 const Hero = () => {
     const [pageTabNumber, setPageTabNumber] = useState(1)
@@ -26,7 +25,7 @@ const Hero = () => {
     }
 
     function arrayForPageTabs(array) {
-        const numberOfVisibleElements = 5
+        const numberOfVisibleElements = 6
         const result = [];
         for (let i = 0; i < array.length; i += numberOfVisibleElements) {
             result.push(array.slice(i, i + numberOfVisibleElements));
@@ -59,7 +58,7 @@ const Hero = () => {
                     <Loader load={load}/>
                 </div>
 
-                <div id='header' className="min-h-screen">
+                <div id='header' className="ultraSmall:h-[800px] ss:h-[750px] md:h-[800px] xl:h-[900px] xxl:x-[1000px] semiLg:h-[800px]">
                     <div className="absolute z-[0] w-full inset-0 object-cover opacity-60">
                         <CarouselComponent />
                     </div>
@@ -86,8 +85,8 @@ const Hero = () => {
                     </div>
                 </div>
 
-                <div className="relative z-[5]">
-                    <div ref={top} className="mt-[5%]">
+                <div className="relative z-[5] mt-[5%]">
+                    <div ref={top} className="">
                         <h1 className="font-poppins font-semibold ss:text-[72px] ultraSmall:text-[45px] text-[52px] text-gray-700 ss:leading-[100.8px] leading-[75px] text-center">
                             Главная
                         </h1>

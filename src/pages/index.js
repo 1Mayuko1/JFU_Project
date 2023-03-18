@@ -8,6 +8,7 @@ import IsraelNews from './IsraelNews'
 import OurProjects from './OurProjects'
 import UkraineNews from './UkraineNews'
 import WorldNews from './WorldNews'
+import Contacts from "./Contacts";
 
 export {
     NotFound,
@@ -20,4 +21,5 @@ export {
     OurProjects,
     UkraineNews,
     WorldNews,
+    Contacts,
 }

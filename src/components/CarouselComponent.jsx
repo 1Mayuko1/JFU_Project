@@ -21,8 +21,6 @@ const CarouselComponent = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [toggle, setToggle] = useState(false);
 
-    // console.log('toggle', toggle)
-
     useEffect(() => {
         const interval = setInterval(() => {
             setToggle(!toggle)
@@ -46,13 +44,9 @@ const CarouselComponent = () => {
         setCurrentIndex(newIndex);
     };
 
-    // const goToSlide = (slideIndex) => {
-    //     setCurrentIndex(slideIndex);
-    // };
-
     return (
         <div className='h-screen w-full group'>
-            <div style={{backgroundImage: `url(${slides[currentIndex].url})`}} className='w-full min-h-screen bg-center bg-cover duration-500'/>
+            <div style={{backgroundImage: `url(${slides[currentIndex].url})`}} className='w-full ultraSmall:h-[800px] ss:h-[750px] md:h-[800px] semiLg:h-[800px] xl:h-[900px] xxl:h-[1000px] bg-center bg-cover duration-500'/>
 
             {/*/!* Left Arrow *!/*/}
             {/*<div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>*/}
