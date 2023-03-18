@@ -4,7 +4,7 @@ import {Footer, Navbar} from "../components";
 
 const Layout = () => {
     return (
-        <div className="">
+        <div>
             <Navbar />
             <Outlet />
             <Footer />

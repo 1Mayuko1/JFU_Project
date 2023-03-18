@@ -10,6 +10,7 @@ import SideInfoCards from "./SideInfoCards";
 import VerticalNewsCard from "./VerticalNewsCard";
 import CreatorInfoCard from "./CreatorInfoCard";
 import SideInfoBottomVersCards from "./SideInfoBottomVersCards";
+import Loader from "./Loader";
 
 export {
     Layout,
@@ -24,4 +25,5 @@ export {
     VerticalNewsCard,
     CreatorInfoCard,
     SideInfoBottomVersCards,
+    Loader,
 }

@@ -11,11 +11,11 @@ const HorizontalNewsCard = ({content, title, date, mainImage, paragraphs, detail
         setDetailsVisible(!detailsVisible)
     }
 
-    useEffect(() => {
-        if(index === 0) {
-            setDetailsVisible(true)
-        }
-    }, [])
+    // useEffect(() => {
+    //     if(index === 0) {
+    //         setDetailsVisible(true)
+    //     }
+    // }, [])
 
     const formatDate = (date) => {
         const rawDate = new Date(date);

@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {jewishStarIcon} from "../assets";
 import styles from "../style";
 import {bottomLinks, contacts, newsFromWebsite, worldPics} from "../constants/constants";
@@ -9,43 +9,36 @@ import SideInfoCards from "./SideInfoCards";
 import VerticalNewsCard from "./VerticalNewsCard";
 import CreatorInfoCard from "./CreatorInfoCard";
 import SideInfoBottomVersCards from "./SideInfoBottomVersCards";
+import Loader from "./Loader";
 
 const Hero = () => {
     const [pageTabNumber, setPageTabNumber] = useState(1)
+    const [load, setLoad] = useState(false)
 
     const top = useRef(null)
-    const executeTopScroll = () => top.current.scrollIntoView()
+    const executeTopScroll = () => {
+        setLoad(true); // turn on the loader
+        setTimeout(() => {
+            top.current.scrollIntoView(); // perform scroll
+            setTimeout(() => setLoad(false), 2000); // turn off loader after scroll is complete
+        }, 500); // delay scroll to give time for loader to display
+    }
 
-    const numbersArray = () => {
-        let numOfElement = newsFromWebsite.length
-        if (numOfElement % 5 !== 0) {
-            numOfElement = Math.floor(numOfElement / 5) * 5;
+    function arrayForPageTabs(array) {
+        const numberOfVisibleElements = 5
+        const result = [];
+        for (let i = 0; i < array.length; i += numberOfVisibleElements) {
+            result.push(array.slice(i, i + numberOfVisibleElements));
         }
-        return numOfElement / 5
+        return result;
     }
 
-    const lengthOfNews = (length) => {
-        let arrayFromNumber = Array.from({ length }, (_, index) => index + 1);
-        if (arrayFromNumber.length < 6) {
-            return arrayFromNumber
-        } else {
-            let numsForArray = arrayFromNumber.map((el, index) => index + 1)
-            const firstThreeElementsOfNews = numsForArray.slice(0, 3);
-            const lastThreeElementsOfNews = numsForArray.slice(numsForArray.length - 4);
-            return [...firstThreeElementsOfNews, ...lastThreeElementsOfNews]
-        }
+    const trimArrayByPageNumber = () => {
+        return arrayForPageTabs(newsFromWebsite)[pageTabNumber - 1]
     }
-
-    const trimArrayByPageNumber = (arr, num) => {
-        let maxLengthOfArray = 5
-        const start = Math.max(num, 0);
-        const end = Math.min(num + maxLengthOfArray, arr.length);
-        return arr.slice(start + 1, end + 1);
-    }
-
 
     const showNextTabOfNews = () => {
-        if (numbersArray() !== pageTabNumber) {
+        if (arrayForPageTabs(newsFromWebsite).length !== pageTabNumber) {
             setPageTabNumber(prevState => prevState + 1)
             executeTopScroll()
         }
@@ -61,6 +54,10 @@ const Hero = () => {
     return (
         <>
             <section className={`bg-gray-200 bg-opacity-50 relative`}>
+                <div>
+                    <Loader load={load}/>
+                </div>
+
                 <div id='header' className="min-h-screen">
                     <div className="absolute z-[0] w-full inset-0 object-cover opacity-60">
                         <CarouselComponent />
@@ -99,18 +96,11 @@ const Hero = () => {
                         <div className="flex xl:flex-row flex-col pt-[5%] xl:w-[90%] w-[80%]">
                             <div className="flex flex-wrap justify-center w-full h-full">
                                 {
-                                    pageTabNumber === 1 ?
-                                        newsFromWebsite.slice(0, 5).map((card, index) => {
-                                            return (
-                                                <HorizontalNewsCard imgSource={worldPics} index={index} key={new Date() + `${index}`} {...card} />
-                                            )
-                                        })
-                                    :
-                                        trimArrayByPageNumber(newsFromWebsite, pageTabNumber * 5).map((card, index) => {
-                                            return (
-                                                <HorizontalNewsCard imgSource={worldPics} index={index} key={new Date() + `${index}`} {...card} />
-                                            )
-                                        })
+                                    trimArrayByPageNumber().map((card, index) => {
+                                        return (
+                                            <HorizontalNewsCard imgSource={worldPics} index={index} key={new Date() + `${index}`} {...card} />
+                                        )
+                                    })
                                 }
                             </div>
                             <div className="xl:w-[20%] w-[100%]">
@@ -120,7 +110,7 @@ const Hero = () => {
                     </div>
 
                     <div>
-                        <div className="w-full flex items-center justify-center bg-gray-100 mt-[5%]">
+                        <div className="w-full flex items-center justify-center mt-[5%]">
                             <div className="flex items-center">
                                 <div>
                                     <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm"
@@ -131,38 +121,27 @@ const Hero = () => {
                                                 <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd"/>
                                             </svg>
                                         </div>
-                                        {
-                                            <div>
-                                                {
-                                                    lengthOfNews(numbersArray()).length > 6 ?
-                                                        lengthOfNews(numbersArray()).map((el, index) => {
-                                                            if (index === 3) {
-                                                                return (
-                                                                    <span key={new Date() + `${index}`} className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">...</span>
-                                                                )
-                                                            }
-                                                            return (
-                                                                <button key={new Date() + `${index}`} onClick={() => {setPageTabNumber(el); executeTopScroll()}} className={`${el === pageTabNumber ? "active [&.active]:bg-gray-300" : ""} cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0`}>
-                                                                    {/*<a href={'#ScrollToMainNews'}>*/}
-                                                                        <p>{el}</p>
-                                                                    {/*</a>*/}
-                                                                </button>
-                                                            )
-                                                        })
-                                                    :
-                                                        lengthOfNews(numbersArray()).map((el, index) => {
-                                                            return (
-                                                                <button key={new Date() + `${index}`} onClick={() => {setPageTabNumber(el); executeTopScroll()}} className={`${el === pageTabNumber ? "active [&.active]:bg-gray-300" : ""} cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0`}>
-                                                                    {/*<a href={'#ScrollToMainNews'}>*/}
-                                                                        <p>{el}</p>
-                                                                    {/*</a>*/}
-                                                                </button>
-                                                            )
-                                                        })
-                                                }
-                                            </div>
-
-                                        }
+                                        <div>
+                                            {
+                                                arrayForPageTabs(newsFromWebsite).length > 6 ?
+                                                    arrayForPageTabs(newsFromWebsite).map((_, index) => {
+                                                        if (index === 3) {return (<span key={new Date() + `${index}`} className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">...</span>)}
+                                                        return (
+                                                            <button key={new Date() + `${index}`} onClick={() => {setPageTabNumber(index + 1); executeTopScroll()}} className={`${index + 1 === pageTabNumber ? "active [&.active]:bg-gray-300" : ""} cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0`}>
+                                                                <p>{index + 1}</p>
+                                                            </button>
+                                                        )
+                                                    })
+                                                :
+                                                    arrayForPageTabs(newsFromWebsite).map((_, index) => {
+                                                        return (
+                                                            <button key={new Date() + `${index}`} onClick={() => {setPageTabNumber(index + 1); executeTopScroll()}} className={`${index + 1 === pageTabNumber ? "active [&.active]:bg-gray-300" : ""} cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0`}>
+                                                                <p>{index + 1}</p>
+                                                            </button>
+                                                        )
+                                                    })
+                                            }
+                                        </div>
                                         <span className="sr-only">Next</span>
                                         <div onClick={showNextTabOfNews} className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0">
                                             <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
