@@ -3,19 +3,13 @@ import {arrowUp, chevronDown, chevronRight} from "../assets";
 import {Link} from "react-router-dom";
 import GreyButton from "./GreyButton";
 
-const HorizontalNewsCard = ({content, title, date, mainImage, paragraphs, details, tags, index}) => {
+const HorizontalNewsCard = ({content, title, date, mainImage, paragraphs, details, tags, index, id}) => {
 
     const [detailsVisible, setDetailsVisible] = useState(false)
 
     const checkDetailsVisible = () => {
         setDetailsVisible(!detailsVisible)
     }
-
-    // useEffect(() => {
-    //     if(index === 0) {
-    //         setDetailsVisible(true)
-    //     }
-    // }, [])
 
     const formatDate = (date) => {
         const rawDate = new Date(date);
@@ -80,7 +74,7 @@ const HorizontalNewsCard = ({content, title, date, mainImage, paragraphs, detail
                         </p>
                     )
                 })}
-                <Link to={`news_details`}>
+                <Link to={`/home/${id}`}>
                     <div className={`group flex flex-col md:flex-row md:justify-between justify-center items-center mb-5 mt-10`}>
                         <div className={`flex flex-row md:pl-5 flex justify-center items-center`}>
                             <p className="font-poppins font-normal ultraSmall:text-[12px] xs:text-[16px] sm:text-[25px] text-gray-700">

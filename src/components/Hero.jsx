@@ -10,6 +10,7 @@ import VerticalNewsCard from "./VerticalNewsCard";
 import CreatorInfoCard from "./CreatorInfoCard";
 import SideInfoBottomVersCards from "./SideInfoBottomVersCards";
 import Loader from "./Loader";
+import {Link} from "react-router-dom";
 
 const Hero = () => {
     const [pageTabNumber, setPageTabNumber] = useState(1)
@@ -17,11 +18,11 @@ const Hero = () => {
 
     const top = useRef(null)
     const executeTopScroll = () => {
-        setLoad(true); // turn on the loader
+        setLoad(true); // turn on
         setTimeout(() => {
             top.current.scrollIntoView(); // perform scroll
-            setTimeout(() => setLoad(false), 2000); // turn off loader after scroll is complete
-        }, 500); // delay scroll to give time for loader to display
+            setTimeout(() => setLoad(false), 2000); // turn off after scroll
+        }, 500); // delay time for loader to display
     }
 
     function arrayForPageTabs(array) {

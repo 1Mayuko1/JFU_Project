@@ -70,7 +70,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className="bg-gray-400 bg-opacity-50 w-full overflow-hidden">
+        <div className="bg-gray-300 w-full overflow-hidden">
             <div className={`${styles.paddingX} ${styles.flexCenter}`}>
                 <div className={`${styles.boxWidth}`}>
                     <nav className="w-full flex py-6 justify-between items-center navbar">

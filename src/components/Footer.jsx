@@ -6,9 +6,10 @@ const Footer = () => {
     return (
         <div>
             <div>
-                <div className={`bg-gray-400 bg-opacity-50 relative z-[1] ${styles.paddingX} ${styles.flexCenter}`}>
+                <div className={`bg-gray-300 relative ${styles.paddingX} ${styles.flexCenter}`}>
                     <div className={`${styles.boxWidth}`}>
                         <section className={`${styles.flexCenter} sm:pt-8 sm:pb-8 py-6 flex-col`}>
+
                             <div className={`${styles.flexStart} md:flex-row flex-col mb-8 w-full`}>
                                 <div className="flex-1 w-[100%] h-[227px] flex flex-col justify-center items-center mr-10">
                                     <div className="flex flex-row items-center justify-center cursor-pointer" onClick={() => alert('Hello!')}>
