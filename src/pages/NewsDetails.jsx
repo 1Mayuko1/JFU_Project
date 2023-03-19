@@ -66,7 +66,7 @@ const NewsDetails = () => {
                         </div>
                         <div className="h-[400px] xl:h-[500px] xxl:h-[600px] md:h-[500px]
                           w-[30%] semiLg:w-[40%] w-full
-                          object-cover flex justify-center shadow-2xl">
+                          flex justify-center shadow-xl rounded-xl">
                             <img className="rounded-xl object-cover w-full h-full" src={data.mainImage} alt=""/>
                         </div>
                     </div>

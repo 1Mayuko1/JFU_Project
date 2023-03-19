@@ -11,8 +11,14 @@ import VerticalNewsCard from "./VerticalNewsCard";
 import CreatorInfoCard from "./CreatorInfoCard";
 import SideInfoBottomVersCards from "./SideInfoBottomVersCards";
 import Loader from "./Loader";
+import NewsByNameComponent from "./NewsByNameComponent";
+import TopLeftSideContainer from "./News/TopLeftSideContainer";
+import ThreeCardsComponent from "./News/ThreeCardsComponent";
+import MiniNewsCard from "./News/MiniNewsCard";
+import HeaderCard from "./News/HeaderCard";
 
 export {
+    Loader,
     Layout,
     Navbar,
     Hero,
@@ -25,5 +31,9 @@ export {
     VerticalNewsCard,
     CreatorInfoCard,
     SideInfoBottomVersCards,
-    Loader,
+    NewsByNameComponent,
+    TopLeftSideContainer,
+    ThreeCardsComponent,
+    MiniNewsCard,
+    HeaderCard,
 }
