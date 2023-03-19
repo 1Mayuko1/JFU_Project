@@ -12,7 +12,7 @@ import {
     OurProjects,
     UkraineNews,
     WorldNews,
-    NotFound
+    NotFound, NewPost
 } from "./pages";
 import ScrollToTop from "./ScrollToTop";
 
@@ -35,6 +35,7 @@ function App() {
                         <Route path="/contacts" element={<Contacts />} />
                     </Route>
                     <Route path="/*" element={<NotFound />} />
+                    <Route path="/create_new_post" element={<NewPost />} />
                 </Routes>
             </ScrollToTop>
         </div>

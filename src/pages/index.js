@@ -9,6 +9,7 @@ import OurProjects from './OurProjects'
 import UkraineNews from './UkraineNews'
 import WorldNews from './WorldNews'
 import Contacts from "./Contacts";
+import NewPost from "./NewPost";
 
 export {
     NotFound,
@@ -22,4 +23,5 @@ export {
     UkraineNews,
     WorldNews,
     Contacts,
+    NewPost,
 }
