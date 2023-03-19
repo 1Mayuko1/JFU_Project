@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {trimTextToLength} from "../../constants/constants";
-import {chessTestImage, chevronDown, chevronRight} from "../../assets";
 import GreyButton from "../GreyButton";
 
 const TopLeftSideContainer = ({data}) => {
