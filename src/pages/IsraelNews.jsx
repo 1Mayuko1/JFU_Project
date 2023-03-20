@@ -1,5 +1,6 @@
 import React from 'react';
 import {newsFromWebsite} from "../constants/constants";
+import {NewsByNameComponent} from "../components";
 
 const IsraelNews = () => {
 
@@ -16,14 +17,16 @@ const IsraelNews = () => {
         return Array.from(uniqueTags)
     }
 
-    console.log('data --', newsFromWebsite)
-    console.log('findHistoryObjects --', findHistoryObjects(newsFromWebsite, 'Израиль'))
-    console.log('findUniqueTags --', findUniqueTags(newsFromWebsite))
+    // console.log('data --', newsFromWebsite)
+    // console.log('findHistoryObjects --', findHistoryObjects(newsFromWebsite, 'Израиль'))
+    // console.log('findUniqueTags --', findUniqueTags(newsFromWebsite))
 
     return (
-        <div>
-
-        </div>
+        <section>
+            <div className="">
+                <NewsByNameComponent text={'Новости Израиль'}/>
+            </div>
+        </section>
     );
 };
 

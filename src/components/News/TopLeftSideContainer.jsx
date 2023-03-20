@@ -1,9 +1,30 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import {Link} from "react-router-dom";
-import {trimTextToLength} from "../../constants/constants";
+import {newsFromWebsite, trimTextToLength, worldPics} from "../../constants/constants";
 import GreyButton from "../GreyButton";
+import Loader from "../Loader";
+import HorizontalNewsCard from "../HorizontalNewsCard";
+import SideInfoCards from "../SideInfoCards";
 
 const TopLeftSideContainer = ({data}) => {
+    const [pageTabNumber, setPageTabNumber] = useState(1)
+    const [load, setLoad] = useState(false)
+
+    const trimArrayByCount = (data) => {
+        const numOfTrim = 3
+        const last = data.slice(-numOfTrim - 1)
+        const first = data.slice(0, numOfTrim)
+        return [...first, ...last]
+    }
+
+    const top = useRef(null)
+    const executeTopScroll = () => {
+        setLoad(true)
+        setTimeout(() => {
+            top.current.scrollIntoView()
+            setTimeout(() => setLoad(false), 2000)
+        }, 500)
+    }
 
     const formatDate = (date) => {
         const rawDate = new Date(date);
@@ -11,70 +32,109 @@ const TopLeftSideContainer = ({data}) => {
         return rawDate.toLocaleDateString('en-us', options)
     }
 
-    const LeftCards = ({data}) => {
-        return (
-            <div className={`rounded-lg mb-5 w-full cursor-pointer flex flex-col lg:flex-row items-center shadow-md`}>
-                <div className="flex flex-col w-full md:h-full md:justify-between">
-                    <div className="flex flex-col justify-between px-4 leading-normal w-full">
-                        <p className="pt-3 font-semibold font-normal lg:text-left text-center text-[16px] text-gray-700">
-                            {trimTextToLength(data.title, 50)}
-                        </p>
-                        <p className="font-poppins font-normal text-[14px] text-gray-700">
-                            {trimTextToLength(data.content, 200)}
-                        </p>
-                    </div>
-                    <div className={`flex flex-col lg:flex-row md:justify-between justify-center items-center mb-3`}>
-                        <div className={`${data.tags.length !== 0 && data.tags.includes("newspaper") ? "ml-5" : 'hidden'} lg:pr-10`}>
-                            <div className="group cursor-pointer flex-1 w-[30%]] mx-10 lg:mb-0 mb-5">
-                                <GreyButton title={`Газета "Киев еврейский"`}/>
-                            </div>
-                        </div>
-                        <div className={`${data.paragraphs ? "ml-5" : 'ml-0'} lg:pr-10`}>
-                            <p className="font-poppins font-normal text-[14px] text-gray-700 my-2">
-                                {formatDate(data.date)}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        )
+    function arrayForPageTabs(array) {
+        const numberOfVisibleElements = 3
+        const result = [];
+        for (let i = 0; i < array.length; i += numberOfVisibleElements) {
+            result.push(array.slice(i, i + numberOfVisibleElements));
+        }
+        return result;
+    }
+
+    const trimArrayByPageNumber = () => {
+        return arrayForPageTabs(data)[pageTabNumber - 1]
+    }
+
+    const showNextTabOfNews = () => {
+        if (arrayForPageTabs(data).length !== pageTabNumber) {
+            setPageTabNumber(prevState => prevState + 1)
+            executeTopScroll()
+        }
+    }
+
+    const showPrevTabOfNews = () => {
+        if (pageTabNumber !== 1) {
+            setPageTabNumber(prevState => prevState - 1)
+            executeTopScroll()
+        }
     }
 
     return (
-        <div>
-            <div className="w-full flex flex-col">
-                <div className="w-full flex flex-row">
-                    <div className="min-w-[60%] min-h-full flex flex-wrap justify-center items-center">
-                        {
-                            data.slice(1, 5).map((card, index) => {
-                                return (
-                                    <div className="w-[90%]" key={`${new Date() + index}`}>
-                                        <Link to={`/home/${card.id}`}>
-                                            <LeftCards data={card}/>
-                                        </Link>
-                                    </div>
-                                )
-                            })
-                        }
+        <section>
+            <div ref={top} className="w-full flex">
+                <div>
+                    <Loader load={load}/>
+                </div>
+                <div className="w-full flex flex-col justify-center items-center">
+
+                    <div className="w-full flex justify-center items-center">
+                        <div className="flex xl:flex-row flex-col xl:w-[90%] w-[80%]">
+                            <div className="flex flex-wrap justify-center w-full h-full">
+                                {
+                                    trimArrayByPageNumber().slice(0, 3).map((card, index) => {
+                                        return (
+                                            <HorizontalNewsCard key={new Date() + `${index}`} {...card} />
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
                     </div>
-                    <div className="min-w-[40%] flex flex-col justify-center items-center">
-                        {
-                            data.slice(1, 2).map((card, index) => {
-                                return (
-                                    <div className="" key={`${new Date() + index}`}>
-                                        <Link to={`/home/${card.id}`}>
-                                            <div className="flex justify-center items-center">
-                                                <img className="max-h-[10%] rounded-xl object-cover" src={card.mainImage} alt="placeholder" />
-                                            </div>
-                                        </Link>
+
+                    <div>
+                        <div className="w-full flex items-center justify-center mt-[20%]">
+                            <div className="flex items-center">
+                                <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm"
+                                     aria-label="Pagination">
+                                    <div onClick={showPrevTabOfNews} className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0">
+                                        <span className="sr-only">Previous</span>
+                                        <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd"/>
+                                        </svg>
                                     </div>
-                                )
-                            })
-                        }
+                                    <div>
+                                        {
+                                            newsFromWebsite.length > 6 ?
+                                                newsFromWebsite.map((_, index) => {
+                                                    if (index === 6) {return (<span key={new Date() + `${index}`} className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">...</span>)}
+                                                    else if (index > 6) {
+                                                        return null
+                                                    } else {
+                                                        return (
+                                                            <button key={new Date() + `${index}`} onClick={() => {setPageTabNumber(index + 1); executeTopScroll()}} className={`${index + 1 === pageTabNumber ? "active [&.active]:bg-gray-300" : ""} cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0`}>
+                                                                <p>{index + 1}</p>
+                                                            </button>
+                                                        )
+                                                    }
+                                                })
+                                                :
+                                                newsFromWebsite.map((_, index) => {
+                                                    return (
+                                                        <button key={new Date() + `${index}`} onClick={() => {setPageTabNumber(index + 1); executeTopScroll()}} className={`${index + 1 === pageTabNumber ? "active [&.active]:bg-gray-300" : ""} cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0`}>
+                                                            <p>{index + 1}</p>
+                                                        </button>
+                                                    )
+                                                })
+                                        }
+                                    </div>
+                                    <span className="sr-only">Next</span>
+                                    <div onClick={showNextTabOfNews} className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0">
+                                        <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd"/>
+                                        </svg>
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
                     </div>
+
+                    <div>
+
+                    </div>
+
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

@@ -1,10 +1,13 @@
 import React from 'react';
+import {NewsByNameComponent} from "../components";
 
 const ForumNews = () => {
     return (
-        <div>
-
-        </div>
+        <section>
+            <div className="">
+                <NewsByNameComponent text={'Новости форума'}/>
+            </div>
+        </section>
     );
 };
 
