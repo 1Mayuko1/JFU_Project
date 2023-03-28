@@ -10,7 +10,6 @@ import GreyButton from "./GreyButton";
 import Loader from "./Loader";
 
 const NewsByNameComponent = ({text}) => {
-    const [pageTabNumber, setPageTabNumber] = useState(1)
     const [load, setLoad] = useState(false)
 
     const top = useRef(null)

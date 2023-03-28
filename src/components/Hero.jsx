@@ -10,12 +10,34 @@ import VerticalNewsCard from "./VerticalNewsCard";
 import CreatorInfoCard from "./CreatorInfoCard";
 import SideInfoBottomVersCards from "./SideInfoBottomVersCards";
 import Loader from "./Loader";
+import ReactPaginate from "react-paginate";
 
 const Hero = () => {
     const [pageTabNumber, setPageTabNumber] = useState(1)
     const [load, setLoad] = useState(false)
 
-    // console.log(newsFromWebsite.length / 5)
+    const newsDataState = newsFromWebsite
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(6);
+
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = newsDataState.slice(indexOfFirstPost, indexOfLastPost);
+
+    const paginate = ({ selected }) => {
+        setCurrentPage(selected + 1);
+    };
+
+    const pageRangeDisplayed = windowWidth >= 768 ? 3 : 1;
+    const marginPagesDisplayed = windowWidth >= 768 ? 3 : 1;
 
     const top = useRef(null)
     const executeTopScroll = () => {
@@ -24,42 +46,6 @@ const Hero = () => {
             top.current.scrollIntoView(); // perform scroll
             setTimeout(() => setLoad(false), 2000); // turn off after scroll
         }, 500); // delay time for loader to display
-    }
-
-    // const trimArrayByCount = (data) => {
-    //     const numOfTrim = 3
-    //     const last = data.slice(-numOfTrim - 1)
-    //     const first = data.slice(0, numOfTrim)
-    //     return [...first, ...last]
-    // }
-
-    function arrayForPageTabs(array) {
-        const numberOfVisibleElements = 5
-        const result = [];
-        for (let i = 0; i < array.length; i += numberOfVisibleElements) {
-            result.push(array.slice(i, i + numberOfVisibleElements));
-        }
-        return result;
-    }
-
-    console.log(arrayForPageTabs(newsFromWebsite))
-
-    const trimArrayByPageNumber = () => {
-        return arrayForPageTabs(newsFromWebsite)[pageTabNumber - 1]
-    }
-
-    const showNextTabOfNews = () => {
-        if (arrayForPageTabs(newsFromWebsite).length !== pageTabNumber) {
-            setPageTabNumber(prevState => prevState + 1)
-            executeTopScroll()
-        }
-    }
-
-    const showPrevTabOfNews = () => {
-        if (pageTabNumber !== 1) {
-            setPageTabNumber(prevState => prevState - 1)
-            executeTopScroll()
-        }
     }
 
     return (
@@ -106,12 +92,16 @@ const Hero = () => {
                     <div className="w-full flex justify-center items-center">
                         <div className="flex xl:flex-row flex-col pt-[5%] xl:w-[90%] w-[80%]">
                             <div className="flex flex-wrap justify-center w-full h-full">
-                                {
-                                    trimArrayByPageNumber().map((card, index) => {
+                                { newsDataState ?
+                                    currentPosts.map((card, index) => {
                                         return (
                                             <HorizontalNewsCard imgSource={worldPics} index={index} key={new Date() + `${index}`} {...card} />
                                         )
                                     })
+                                    :
+                                    <div>
+                                        <div className="">Loading...</div>
+                                    </div>
                                 }
                             </div>
                             <div className="xl:w-[20%] w-[100%]">
@@ -121,48 +111,21 @@ const Hero = () => {
                     </div>
 
                     <div className="w-full flex items-center justify-center mt-[5%]">
-                        <div className="flex items-center">
-                            <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm"
-                                 aria-label="Pagination">
-                                <div onClick={showPrevTabOfNews} className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0">
-                                    <span className="sr-only">Previous</span>
-                                    <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                        <path fillRule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clipRule="evenodd"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    {
-                                        arrayForPageTabs(newsFromWebsite).length > 6 ?
-                                            arrayForPageTabs(newsFromWebsite).map((_, index) => {
-                                                if (index === 6) {return (<span key={new Date() + `${index}`} className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">...</span>)}
-                                                else if (index > 6) {
-                                                    return null
-                                                } else {
-                                                    return (
-                                                        <button key={new Date() + `${index}`} onClick={() => {setPageTabNumber(index + 1); executeTopScroll()}} className={`${index + 1 === pageTabNumber ? "active [&.active]:bg-gray-300" : ""} cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0`}>
-                                                            <p>{index + 1}</p>
-                                                        </button>
-                                                    )
-                                                }
-                                            })
-                                            :
-                                            arrayForPageTabs(newsFromWebsite).map((_, index) => {
-                                                return (
-                                                    <button key={new Date() + `${index}`} onClick={() => {setPageTabNumber(index + 1); executeTopScroll()}} className={`${index + 1 === pageTabNumber ? "active [&.active]:bg-gray-300" : ""} cursor-pointer relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0`}>
-                                                        <p>{index + 1}</p>
-                                                    </button>
-                                                )
-                                            })
-                                    }
-                                </div>
-                                <span className="sr-only">Next</span>
-                                <div onClick={showNextTabOfNews} className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-200 focus:z-20 focus:outline-offset-0">
-                                    <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                        <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd"/>
-                                    </svg>
-                                </div>
-                            </nav>
-                        </div>
+                        <ReactPaginate
+                            onPageChange={paginate}
+                            onClick={executeTopScroll}
+                            pageCount={Math.ceil(newsDataState.length / postsPerPage)}
+                            previousLabel={'<'}
+                            nextLabel={'>'}
+                            pageRangeDisplayed={pageRangeDisplayed}
+                            marginPagesDisplayed={marginPagesDisplayed}
+                            renderOnZeroPageCount={null}
+                            containerClassName={'pagination'}
+                            pageLinkClassName={'page-number'}
+                            previousLinkClassName={'page-number'}
+                            nextLinkClassName={'page-number'}
+                            activeLinkClassName={'active'}
+                        />
                     </div>
 
                     <div className="w-full">

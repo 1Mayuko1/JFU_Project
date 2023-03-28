@@ -35,14 +35,13 @@ const HorizontalNewsCard = ({content, title, date, mainImage, paragraphs, detail
                 </div>
                 <div className="flex flex-col w-full md:h-full md:justify-between">
                     <div className="flex flex-col justify-between p-4 leading-normal w-full">
-                        <p className="font-semibold font-normal lg:text-left text-center text-[20px] leading-[30px] ss:text-[30px] ss:leading-[40px] text-gray-700 my-2">
-                            {trimTextToLength(title, 100)}
-                        </p>
+                        <Link to={`/home/${id}`}>
+                            <p className="cursor-pointer font-semibold font-normal lg:text-left text-center text-[20px] leading-[30px] ss:text-[30px] ss:leading-[40px] text-gray-700 my-2">
+                                {trimTextToLength(title, 100)}
+                            </p>
+                        </Link>
                         <p className="font-poppins font-normal text-[18px] leading-[24px] ss:text-[22px] ss:leading-[28px] text-gray-700 my-2">
-                            {trimTextToLength(content, 700)}
-                        </p>
-                        <p className="font-poppins font-normal text-[18px] leading-[24px] ss:text-[22px] ss:leading-[28px] text-gray-700 my-2">
-                            {trimTextToLength(details, 700)}
+                            {trimTextToLength(content, 300)}
                         </p>
                     </div>
                     <div className={`flex flex-col lg:flex-row md:justify-between justify-center items-center mb-3`}>

@@ -17,7 +17,7 @@ const NotFound = () => {
             <div className={`${load ? "flex" : "hidden"} h-screen w-full flex items-center justify-center`}>
                 <InfinitySpin
                     width='200'
-                    color="#4fa94d"
+                    color="#616161"
                 />
             </div>
             <div className={`${load ? "hidden" : ""}`}>

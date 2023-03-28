@@ -101,9 +101,11 @@ const Navbar = () => {
                         <div className={`${!dropDownVisible ? "hidden" : "flex"} p-3 bg-gray-300 absolute top-20 right-40 mx-4 my-2 min-w-[140px] rounded-xl sidebar z-[3]`}>
                             <ul className="list-none flex justify-end items-center flex-1 flex-col">
                                 {dropDownNavLinks.map((nav, index) => (
-                                    <li key={nav.id} className={`w-full text-center hover:rounded-lg px-5 py-2 hover:bg-gray-400 font-poppins cursor-pointer text-gray-700 text-[16px] ${index === dropDownNavLinks.length - 1 ? "mb-0" : "mb-4"}`} onClick={() => setDropDownVisible(false)}>
-                                        <Link to={`/${nav.id}`}>{nav.title}</Link>
-                                    </li>
+                                    <Link to={`/${nav.id}`}>
+                                        <li key={nav.id} className={`w-full text-center hover:rounded-lg px-5 py-2 hover:bg-gray-400 font-poppins cursor-pointer text-gray-700 text-[16px] ${index === dropDownNavLinks.length - 1 ? "mb-0" : "mb-4"}`} onClick={() => setDropDownVisible(false)}>
+                                            {nav.title}
+                                        </li>
+                                    </Link>
                                 ))}
                             </ul>
                         </div>
