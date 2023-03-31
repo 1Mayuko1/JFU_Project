@@ -26,9 +26,9 @@ import news1Image from "./news1Image.jpeg"
 import shagal from "./shagal.jpeg"
 import news3Photo from "./news3Photo.jpeg"
 import news4Image from "./news4Image.jpeg"
-
 import news5Image from "./news5Image.jpeg"
-// import news3Photo from "./news3Photo.jpeg"
+import fond_logo from "./fond_logo.png"
+import forum_logo from "./forum_logo.png"
 
 export {
     menu,
@@ -60,4 +60,6 @@ export {
     news3Photo,
     news4Image,
     news5Image,
+    forum_logo,
+    fond_logo,
 }

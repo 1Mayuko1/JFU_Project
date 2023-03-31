@@ -14,7 +14,14 @@ module.exports = {
         dimBlue: "rgba(9, 151, 124, 0.1)",
         primaryYellow: "#e8e817",
         primaryBlue: "#1717e8",
-        primaryGrey: "#f3f3f3"
+        primaryGrey: "#f3f3f3",
+        // MainTheme
+        darkGreen: '#8DB89D',
+        mediumGreen: '#D3D39A',
+        lightYellow: '#FCF8D6',
+        bone: '#E0D8C3',
+        mainBlue: '#536cc6',
+        secBlue: "#5f72bb"
       },
       transitionProperty: {
         left: "left",
@@ -31,6 +38,7 @@ module.exports = {
       xs: "480px",
       ss: "620px",
       sm: "768px",
+      semiMd: "800px",
       md: "1060px",
       lg: "1200px",
       semiLg: "1400px",

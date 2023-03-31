@@ -7,7 +7,7 @@ const Footer = () => {
     return (
         <div>
             <div>
-                <div className={`bg-gray-300 relative ${styles.paddingX} ${styles.flexCenter}`}>
+                <div className={`bg-gray-50 relative ${styles.paddingX} ${styles.flexCenter}`}>
                     <div className={`${styles.boxWidth}`}>
                         <section className={`${styles.flexCenter} sm:pt-8 sm:pb-8 py-6 flex-col`}>
 

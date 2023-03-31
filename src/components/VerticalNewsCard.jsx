@@ -10,7 +10,7 @@ const VerticalNewsCard = ({title, content, date, mainImage, id}) => {
     }
 
     return (
-        <div className="w-[90%] break-inside relative flex flex-col w-[300px] h-auto bg-gray-100 shadow-xl object-cover justify-between cursor-pointer rounded-2xl m-auto mb-[30px]">
+        <div className="w-[90%] break-inside relative flex flex-col w-[300px] h-auto bg-gray-50 shadow-xl object-cover justify-between cursor-pointer rounded-2xl m-auto mb-[30px]">
             <Link to={`/home/${id}`}>
                 <div className="flex w-full items-center justify-center mt-[20px]">
                     <img className="shadow-xl h-[300px] xs:h-[400px] semiLg:h-[300px] w-[90%] rounded-xl object-cover object-top" src={mainImage} alt="image"/>

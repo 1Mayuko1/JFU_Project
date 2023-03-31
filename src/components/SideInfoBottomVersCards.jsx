@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import GreyButton from "./GreyButton";
 import {Link, useNavigate} from "react-router-dom";
-import {jewishStarIcon, search} from "../assets";
+import {fond_logo, forum_logo, jewishStarIcon, search} from "../assets";
 import {bottomLinks, cloudTags} from "../constants/constants";
 
 const SideInfoBottomVersCards = () => {
@@ -26,94 +26,51 @@ const SideInfoBottomVersCards = () => {
 
                 <div className="mt-[5%] mb-[5%]">
                     <h1 className="font-poppins font-semibold ss:text-[72px] ultraSmall:text-[45px] text-[52px] text-gray-700 ss:leading-[100.8px] leading-[75px] text-center">
-                        Поолезные ссилки
+                        О нас
                     </h1>
                 </div>
 
                 <div className="w-full flex sm:flex-row flex-col items-center justify-center">
-                    <div className="w-[90%] sm:w-[40%] p-6 bg-gray-200 shadow-2xl rounded-lg mb-5 mx-5 mt-5">
-                        <h5 className="font-poppins mb-2 text-2xl font-bold tracking-tight text-gray-700">
-                            Еврейский фонд в украине
-                        </h5>
-                        <p className="mb-3 font-normal text-gray-700 text-[18px] font-poppins pb-5 pt-4">
-                            Ключевые идеи организации — поддержка и возрождение еврейской культуры и общинной жизни в стране. Еврейский фонд организовывает и финансирует проекты, направленные на развитие еврейской культуры и поддержку общин.
-                        </p>
-                        <div className="group cursor-pointer flex-1 w-full bg-opacity-60 rounded-lg">
-                            <div className="group cursor-pointer flex-1 w-full">
-                                <GreyButton title={'Пожертвовать'}/>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="w-[90%] sm:w-[40%] cursor-pointer bg-gray-200 shadow-2xl rounded-lg my-5 mx-5">
-                        <a href="https://www.jhf.nl/">
-                            <div className="">
-                                <div>
-                                    <img className="rounded-md" src="https://www.jhf.nl/images/logo/logo_jhf_nl.png" alt="image"/>
-                                </div>
-                            </div>
-                            <div className="p-5">
-                                <h5 className="font-poppins mb-2 text-2xl font-bold tracking-tight text-gray-700">
-                                    Наши партнеры
-                                </h5>
-                                <p className="mb-3 font-normal text-gray-700 text-[18px] font-poppins">
-                                    Голландский еврейский гуманитарный фонд - продвигает еврейскую жизнь в Центральной и Восточной Европе.
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div className="w-full flex sm:flex-row flex-col items-center justify-center">
-                    <div className="w-[90%] sm:w-[40%] bg-gray-200 shadow-2xl rounded-lg my-5 mx-5">
+                    <div className="w-[90%] sm:w-[40%] bg-gray-100 shadow-2xl rounded-lg my-5 mx-5">
                         <a href="#">
                             <div className="flex flex-row w-full">
-                                <div className="w-[50%]">
-                                    <img className="w-full h-full rounded-md object-cover" src="https://to4ka.fun/wp-content/uploads/2022/04/pravo-na-zahist-3.jpg" alt="image"/>
-                                </div>
-                                <div className="w-[50%]">
-                                    <img className="w-full h-full rounded-md object-cover" src="https://web.archive.org/web/20211026134048im_/https://www.jewishkiev.com.ua/images/stories/banner/assembly.png" alt="image"/>
+                                <div className="w-full">
+                                    <img className="w-full h-full rounded-md object-cover" src={forum_logo} alt="image"/>
                                 </div>
                             </div>
                             <div className="p-5">
                                 <h5 className="font-poppins mb-2 text-2xl font-bold tracking-tight text-gray-700">
-                                    При поддержке
+                                    Еврейский форум в украине
                                 </h5>
                                 <p className="mb-3 font-normal text-gray-700 text-[18px] font-poppins">
-                                    Ассамблея национальностей – это объединение представ
+                                    Официальное название: Всеукраїнська громадська організація «Єврейський форум України».
                                 </p>
                                 <p className="mb-3 font-normal text-gray-700 text-[18px] font-poppins">
-                                    Благотворительный Фонд «Право на защиту» – признанный лидер общественного сектора в сфере миграции в Украине.
+                                    Еврейский форум Украины — это всеукраинская общественная организация, основанная в 2007 году. Главная цель — создание единой системы поддержки и защиты еврейской культуры, интересов и религиозных традиций еврейского народа в Украине, а также проведение конференций, семинаров, фестивалей, акций.
                                 </p>
                             </div>
                         </a>
                     </div>
 
-                    <div className="w-[90%] sm:w-[40%] bg-gray-200 shadow-2xl rounded-lg my-5 mx-5">
-                        <div className="flex flex-row w-full">
+                    <div className="w-[90%] sm:w-[40%] bg-gray-100 shadow-2xl rounded-lg my-5 mx-5">
+                        <div className="flex justify-center w-full">
                             <div className="w-[50%]">
-                                <img className="w-full h-full rounded-md object-cover" src="https://web.archive.org/web/20211026134048im_/https://www.jewishkiev.com.ua/images/stories/banner/banner_museum.jpg" alt="image"/>
-                            </div>
-                            <div className="w-[50%]">
-                                <img className="w-full h-full rounded-md object-cover" src="https://web.archive.org/web/20211026134048im_/https://www.jewishkiev.com.ua/images/stories/banner/jew-fund.png" alt="image"/>
+                                <img className="w-full h-full rounded-md object-cover" src={fond_logo} alt="image"/>
                             </div>
                         </div>
                         <div className="p-5">
                             <h5 className="font-poppins mb-2 text-2xl font-bold tracking-tight text-gray-700">
-                                Наши проекты
+                                Еврейский фонд в украине
                             </h5>
                             <p className="mb-3 font-normal text-gray-700 text-[18px]">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A quisquam reprehenderit tempora?
-                            </p>
-                            <p className="mb-3 font-normal text-gray-700 text-[18px]">
-                                At delectus deleniti illo obcaecati porro sunt, totam.
+                                Ключевые идеи организации — поддержка и возрождение еврейской культуры и общинной жизни в стране. Еврейский фонд организовывает и финансирует проекты, направленные на развитие еврейской культуры и поддержку общин.
                             </p>
                         </div>
                     </div>
                 </div>
 
                 <div className="w-full flex sm:flex-row flex-col items-center justify-center">
-                    <div className="w-[90%] sm:w-[40%] bg-gray-200 shadow-2xl rounded-lg my-5 mx-5">
+                    <div className="w-[90%] sm:w-[40%] bg-gray-100 shadow-2xl rounded-lg my-5 mx-5">
                         <div className="pt-10 pb-2">
                             <h5 className="font-poppins mb-2 text-2xl font-bold tracking-tight text-gray-700 text-center">
                                 Меню сайта
@@ -135,7 +92,7 @@ const SideInfoBottomVersCards = () => {
                         </div>
                     </div>
 
-                    <div className="w-[90%] sm:w-[40%] bg-gray-200 shadow-2xl rounded-lg my-5 mx-5">
+                    <div className="w-[90%] sm:w-[40%] bg-gray-100 shadow-2xl rounded-lg my-5 mx-5">
                         <div className="pt-10 pb-2">
                             <h5 className="font-poppins mb-2 text-2xl font-bold tracking-tight text-gray-700 text-center">
                                 Облако тегов
@@ -158,7 +115,7 @@ const SideInfoBottomVersCards = () => {
                     </div>
                 </div>
 
-                <div className="w-[90%] sm:w-[40%] bg-gray-200 shadow-2xl rounded-lg my-5 mx-5">
+                <div className="w-[90%] sm:w-[40%] bg-gray-100 shadow-2xl rounded-lg my-5 mx-5">
                     <div className="p-5">
                         <h5 className="font-poppins mb-2 text-2xl font-bold tracking-tight text-gray-700 text-center">
                             Найти новость

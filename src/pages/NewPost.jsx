@@ -127,7 +127,7 @@ const NewPost = () => {
     }
 
     return (
-        <div className="bg-gray-100 w-full flex justify-center">
+        <div className="bg-gray-50 w-full flex justify-center">
 
             <div>
                 <Loader load={load}/>
@@ -137,7 +137,7 @@ const NewPost = () => {
                 <img className="w-full max-h-[700px] object-cover" src={"https://images.unsplash.com/photo-1605367031760-5522b8a52756?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"} alt=""/>
             </div>
             <div className="relative z-[2] w-full flex justify-center items-center my-[10%]">
-                <div className="relative z-[2] h-auto w-[90%] md:w-[70%] bg-gray-200 shadow-2xl rounded-2xl px-3 sm:px-10 pb-10">
+                <div className="relative z-[2] h-auto w-[90%] md:w-[70%] bg-gray-100 shadow-2xl rounded-2xl px-3 sm:px-10 pb-10">
                     <form onSubmit={handleSubmit}>
                         <div className="pt-10 w-full flex flex-col items-center justify-center">
                             <div className="w-full">
@@ -159,7 +159,7 @@ const NewPost = () => {
                                     Контекст - content
                                 </label>
                                 <div className="flex flex-col pb-10 w-full ">
-                                    <textarea value={content} onChange={(event) => setContent(event.target.value)} placeholder="Стартап разработал препарат от поражения легких при COVID-19. Начинается второй этап испытаний. Группа ученых из компании Bonus BioGroup в Хайфе разработала в сжатые сроки лекарство, эффективное против поражения легких при коронавирусной инфекции..." className="text-[16px] min-h-[100px] px-5 py-3  bg-gray-100 outline-none text-gray-700 text-[14px] font-poppins bg-gray-100 block w-full mt-1 rounded-md outline-none shadow-md"/>
+                                    <textarea value={content} onChange={(event) => setContent(event.target.value)} placeholder="Группа ученых из компании Bonus BioGroup в Хайфе разработала в сжатые сроки лекарство, эффективное против поражения легких при коронавирусной инфекции..." className="text-[16px] min-h-[100px] px-5 py-3  bg-gray-100 outline-none text-gray-700 text-[14px] font-poppins bg-gray-100 block w-full mt-1 rounded-md outline-none shadow-md"/>
                                 </div>
                             </div>
 
@@ -168,7 +168,7 @@ const NewPost = () => {
                                     Детали - details
                                 </label>
                                 <div className="flex flex-col pb-10 w-full ">
-                                    <textarea value={details} onChange={(event) => setDetails(event.target.value)} placeholder={`В ближайшие дни в больнице \"Рамбам\" начнется второй этап испытаний на людях препарата MesenCure...`} className="text-[16px] min-h-[150px] px-5 py-3  bg-gray-100 outline-none text-gray-700 text-[14px] font-poppins bg-gray-100 block w-full mt-1 rounded-md outline-none shadow-md"/>
+                                    <textarea value={content} onChange={(event) => setContent(event.target.value)} placeholder="Группа ученых из компании Bonus BioGroup в Хайфе разработала в сжатые сроки лекарство, эффективное против поражения легких при коронавирусной инфекции..." className="text-[16px] min-h-[100px] px-5 py-3  bg-gray-100 outline-none text-gray-700 text-[14px] font-poppins bg-gray-100 block w-full mt-1 rounded-md outline-none shadow-md"/>
                                 </div>
                             </div>
 
@@ -177,7 +177,7 @@ const NewPost = () => {
                                     Основной текст - paragraphs
                                 </label>
                                 <div className="flex flex-col pb-10 w-full ">
-                                    <textarea value={paragraphs} onChange={(event) => setParagraphs(event.target.value)} placeholder={`В ближайшие дни в больнице "Рамбам" начнется второй этап испытаний на людях препарата MesenCure. Первый этап, проведенный в той же больнице, завершился успешно...`} className="text-[16px] min-h-[170px] px-5 py-3  bg-gray-100 outline-none text-gray-700 text-[14px] font-poppins bg-gray-100 block w-full mt-1 rounded-md outline-none shadow-md"/>
+                                    <textarea value={paragraphs} onChange={(event) => setParagraphs(event.target.value)} placeholder={`В ближайшие дни в больнице "Рамбам" начнется второй этап испытаний на людях препарата MesenCure. Первый этап, проведенный в той же больнице, завершился успешно...`} className="text-[16px] min-h-[170px] px-5 py-3 outline-none text-gray-700 text-[14px] font-poppins bg-gray-100 block w-full mt-1 rounded-md outline-none shadow-md"/>
                                 </div>
                             </div>
 
@@ -225,11 +225,23 @@ const NewPost = () => {
 
                             <div className="flex flex-col sm:flex-row items-center justify-between mt-10">
                                 <div onClick={handleSubmit} className="p-5">
-                                    <GreyButton title={'Опубликовать'}/>
+                                    <div className="group border-2 border-[#616161] shadow-sm cursor-pointer flex-1 min-w-[200px] bg-gray-100 rounded-lg border">
+                                        <div className="flex-1 flex justify-center items-center flex-row m-3">
+                                            <button type="button" className="text-sm font-medium text-gray-900 outline-none items-center text-gray-700 font-semibold">
+                                                Опубликовать
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className="p-5">
                                     <Link to={`/`}>
-                                        <GreyButton title={'Домой'}/>
+                                        <div className="group border-2 border-[#616161] shadow-sm cursor-pointer flex-1 min-w-[200px] bg-gray-100 rounded-lg border">
+                                            <div className="flex-1 flex justify-center items-center flex-row m-3">
+                                                <button type="button" className="text-sm font-medium text-gray-900 outline-none items-center text-gray-700 font-semibold">
+                                                    Домой
+                                                </button>
+                                            </div>
+                                        </div>
                                     </Link>
                                 </div>
                             </div>

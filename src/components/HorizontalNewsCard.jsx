@@ -29,7 +29,7 @@ const HorizontalNewsCard = ({content, title, date, mainImage, paragraphs, detail
 
     return (
         <div className="flex flex-col w-full items-center justify-center">
-            <div className={`${detailsVisible ? "my-0 rounded-t-lg" : "rounded-lg mb-5"} w-[95%] cursor-pointer flex flex-col lg:flex-row items-center bg-gray-100 shadow-xl delay-100 duration-500`}>
+            <div className={`${detailsVisible ? "my-0 rounded-t-lg" : "rounded-lg mb-5"} w-[95%] cursor-pointer flex flex-col lg:flex-row items-center bg-gray-50 shadow-xl delay-100 duration-500`}>
                 <div className={`h-full lg:w-[50%] ultraSmall:w-full`}>
                     <img className={`object-cover object-top w-full h-full rounded-l`} src={mainImage} alt="image" />
                 </div>

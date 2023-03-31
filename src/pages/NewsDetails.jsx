@@ -64,10 +64,10 @@ const NewsDetails = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="h-[400px] xl:h-[500px] xxl:h-[600px] md:h-[500px]
+                        <div className="h-[500px] xl:h-[500px] xxl:h-[600px] md:h-[500px]
                           w-[30%] semiLg:w-[40%] w-full
                           flex justify-center shadow-xl rounded-xl">
-                            <img className="rounded-xl object-cover w-full h-full" src={data.mainImage} alt=""/>
+                            <img className="rounded-xl object-cover object-top w-full h-full" src={data.mainImage} alt=""/>
                         </div>
                     </div>
 
