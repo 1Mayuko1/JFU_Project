@@ -265,4 +265,19 @@ input[type="search"]::-webkit-search-results-decoration {
     background: #616161;
 }
 
+.fixed-nav-visible {
+    animation-name: slide-up;
+    animation-duration: 500ms;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slide-up {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
 /*carousel*/

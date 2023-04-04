@@ -2,15 +2,12 @@ import React, {useEffect, useRef, useState} from 'react';
 import {newsFromWebsite, worldPics} from "../constants/constants";
 import HeaderCard from "./News/HeaderCard";
 import Loader from "./Loader";
-import {CSSTransition, TransitionGroup} from 'react-transition-group';
-import {arrowDown} from "../assets";
 import VerticalNewsCard from "./VerticalNewsCard";
 import HorizontalNewsCard from "./HorizontalNewsCard";
 import ReactPaginate from "react-paginate";
 
 const NewsByNameComponent = ({text, newsDataInfo}) => {
-    const [load, setLoad] = useState(false)
-    const [startIndex, setStartIndex] = useState(0);
+    const [load, setLoad] = useState(true)
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(12);
 
@@ -23,6 +20,12 @@ const NewsByNameComponent = ({text, newsDataInfo}) => {
         const handleResize = () => setWindowWidth(window.innerWidth);
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoad(false)
+        }, 1000)
     }, []);
 
     const paginate = ({ selected }) => {
@@ -82,7 +85,7 @@ const NewsByNameComponent = ({text, newsDataInfo}) => {
                         </div>
 
                         <div className="hidden sm:flex flex-wrap w-full justify-center px-10 border-b-2 border-[#616161] ">
-                            {getUniqueTags(newsFromWebsite).slice(0, 12).map((tag, index) => {
+                            {getUniqueTags(newsDataInfo).slice(0, 12).map((tag, index) => {
                                 return (
                                     <div key={`${new Date() + index}`} className="w-auto h-[50px] flex-shrink-0 px-5">
                                         <p className="transform hover:-translate-y-1 transition-all duration-200 py-3 cursor-pointer hover:text-black text-center text-[18px] font-normal text-gray-600 ss:max-w-[500px] max-w-[300px]">

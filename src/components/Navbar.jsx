@@ -14,7 +14,7 @@ const Navbar = () => {
     const [isVisibleFixedNav, setIsVisibleFixedNav] = useState(false);
 
     function handleScroll() {
-        const scrolled = window.scrollY >= 600;
+        const scrolled = window.scrollY >= 1200;
         setIsVisibleFixedNav(scrolled);
     }
 
@@ -90,7 +90,7 @@ const Navbar = () => {
     // }
 
     return (
-        <div className={`${isVisibleFixedNav ? "fixed top-0" : "flex"} z-[10] sm:px-10 px-6 flex justify-center items-center bg-gray-50 w-full transition-all duration-500 ease-in-out`}>
+        <div className={`${isVisibleFixedNav ? "fixed top-0 fixed-nav-visible" : "flex"} z-[10] sm:px-10 px-6 flex justify-center items-center bg-gray-50 w-full transition-all duration-500 ease-in-out`}>
             <div className="w-full">
                 {/*<div className='absolute top-0 left-0 w-[100%] h-[100%] z-[3]' onClick={handleChangeVisibleNav}/>*/}
                 <div className={`${styles.boxWidth}`}>

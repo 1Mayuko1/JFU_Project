@@ -78,8 +78,7 @@ const Hero = () => {
                 </div>
 
                 <div className="relative z-[5] mt-[5%]">
-                    <div ref={top} />
-                    <div className="">
+                    <div ref={top} className="">
                         <h1 className="font-poppins font-semibold ss:text-[72px] ultraSmall:text-[45px] text-[52px] text-gray-700 ss:leading-[100.8px] leading-[75px] text-center">
                             Главная
                         </h1>
