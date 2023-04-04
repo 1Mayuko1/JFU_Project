@@ -5,7 +5,7 @@ const CreatorInfoCard = () => {
     return (
         <section>
             <div className="w-full flex justify-center mt-[5%] pb-[5%]">
-                <div className="w-[80%] semiLgXl:w-[65%] flex flex-col items-center bg-gray-50 rounded-xl shadow-xl sm:flex-row shadow-2xl">
+                <div className="w-[80%] semiLgXl:w-[65%] flex flex-col sm:flex-row items-center bg-gray-50 rounded-xl shadow-xl shadow-2xl">
                     <img className="h-auto object-cover w-full rounded-t-lg md:w-48 md:rounded-none md:rounded-l-lg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/ArkadyMonastyrsky.jpg/274px-ArkadyMonastyrsky.jpg" alt="image" />
                     <div className="flex flex-col justify-between mx-4 leading-normal my-5 sm:my-0">
                         <h5 className="mb-3 font-poppins text-gray-700 text-[16px] font-semibold text-gray-700">

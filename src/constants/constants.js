@@ -11,6 +11,16 @@ import {
     shagal, news3Photo, news4Image, news5Image
 } from "../assets"
 
+export const trimTextToLength = (text, maxLength) => {
+    if (text.length <= maxLength) {
+        return text;
+    } else {
+        const trimmedText = text.substring(0, maxLength);
+        const lastSpaceIndex = trimmedText.lastIndexOf(" ");
+        return trimmedText.substring(0, lastSpaceIndex) + "...";
+    }
+}
+
 export const newsFromWebsite = [
     {
         "id": "2e9bb",
@@ -97,30 +107,6 @@ export const newsFromWebsite = [
         ],
         "tags": [
             "Фонд",
-            "Еврейский фонд в Украине",
-            "Форум",
-            "Аркадий Монастырский",
-        ],
-    },
-    {
-        "id": "2e9b2e9bb81e-5-4702-a361-1de2af3e1",
-        "title": "Вышел новый номер газеты \"Киев еврейский\", январь-март 2021 года.",
-        "content": "",
-        "details": "",
-        "date": "2009-11-24T23:21:06.957Z",
-        "tag": "Общие",
-        "paragraphs": [
-
-        ],
-        "mainImage": news4Image,
-        "secondaryImages": [
-
-        ],
-        "tags": [
-            "История",
-            "Израиль",
-            "Мир",
-            "Украина",
             "Еврейский фонд в Украине",
             "Форум",
             "Аркадий Монастырский",
@@ -1590,16 +1576,6 @@ export const worldPics = [
     'https://www.fairobserver.com/wp-content/uploads/2017/11/Pollution-world-news-news-today-international-news.jpg',
     'https://images.mid-day.com/images/images/2023/mar/saudi-iraniStock_d.jpg',
 ]
-
-export const trimTextToLength = (text, maxLength) => {
-    if (text.length <= maxLength) {
-        return text;
-    } else {
-        const trimmedText = text.substring(0, maxLength);
-        const lastSpaceIndex = trimmedText.lastIndexOf(" ");
-        return trimmedText.substring(0, lastSpaceIndex) + "...";
-    }
-}
 
 export const contacts = [
     {

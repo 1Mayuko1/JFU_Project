@@ -14,9 +14,9 @@ const Footer = () => {
                             <div className={`${styles.flexStart} md:flex-row flex-col w-full mb-5`}>
                                 <div className="flex-1 w-[100%] h-auto flex flex-col justify-center items-center mr-10">
                                     <div className="flex flex-row items-center justify-center cursor-pointer" onClick={() => alert('Hello!')}>
-                                        <p className="text-primaryBlue text-[100px] font-poppins font-semibold">J</p>
-                                        <p className="text-gray-800 text-[100px] font-poppins font-semibold">F</p>
-                                        <p className="text-yellow-500 text-[100px] font-poppins font-semibold">U</p>
+                                        <p className="text-mainBlue text-[100px] font-poppins font-semibold">J</p>
+                                        <p className="text-mainBlue text-[100px] font-poppins font-semibold">F</p>
+                                        <p className="text-mainBlue text-[100px] font-poppins font-semibold">U</p>
                                     </div>
                                 </div>
 

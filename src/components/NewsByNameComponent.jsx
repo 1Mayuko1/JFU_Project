@@ -1,24 +1,44 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {newsFromWebsite, trimTextToLength} from "../constants/constants";
-import VerticalNewsCard from "./VerticalNewsCard";
-import TopLeftSideContainer from "./News/TopLeftSideContainer";
-import ThreeCardsComponent from "./News/ThreeCardsComponent";
-import MiniNewsCard from "./News/MiniNewsCard";
+import {newsFromWebsite, worldPics} from "../constants/constants";
 import HeaderCard from "./News/HeaderCard";
-import {Link} from "react-router-dom";
-import GreyButton from "./GreyButton";
 import Loader from "./Loader";
+import {CSSTransition, TransitionGroup} from 'react-transition-group';
+import {arrowDown} from "../assets";
+import VerticalNewsCard from "./VerticalNewsCard";
+import HorizontalNewsCard from "./HorizontalNewsCard";
+import ReactPaginate from "react-paginate";
 
-const NewsByNameComponent = ({text}) => {
+const NewsByNameComponent = ({text, newsDataInfo}) => {
     const [load, setLoad] = useState(false)
+    const [startIndex, setStartIndex] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(12);
+
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = newsDataInfo.slice(indexOfFirstPost, indexOfLastPost);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    const paginate = ({ selected }) => {
+        setCurrentPage(selected + 1);
+    };
+
+    const pageRangeDisplayed = windowWidth >= 768 ? 3 : 1;
+    const marginPagesDisplayed = windowWidth >= 768 ? 3 : 1;
 
     const top = useRef(null)
     const executeTopScroll = () => {
-        setLoad(true); // turn on
+        setLoad(true);
         setTimeout(() => {
-            top.current.scrollIntoView(); // perform scroll
-            setTimeout(() => setLoad(false), 2000); // turn off after scroll
-        }, 500); // delay time for loader to display
+            top.current.scrollIntoView();
+            setTimeout(() => setLoad(false), 2000);
+        }, 500);
     }
 
     const getUniqueTags = (arr) => {
@@ -40,101 +60,106 @@ const NewsByNameComponent = ({text}) => {
         <section>
             <div>
                 <div>
-                    <div>
-                        <Loader load={load}/>
-                    </div>
-                    <div id="header">
-                        <div className="flex flex-col justify-between items-center w-full bg-gray-50">
-                            <h1 className="pt-5 font-poppins font-semibold ss:text-[72px] ultraSmall:text-[45px] text-[52px] max-w-[90%] text-gray-700 ss:leading-[100.8px] leading-[75px] text-center">
-                                {text}
-                            </h1>
+                    <Loader load={load}/>
+                </div>
+                <div id="header">
+                    <div className="flex flex-col justify-between items-center w-full bg-gray-50">
+                        <h1 className="pt-5 font-poppins font-semibold ss:text-[72px] ultraSmall:text-[45px] text-[52px] max-w-[90%] text-gray-700 ss:leading-[100.8px] leading-[75px] text-center">
+                            {text}
+                        </h1>
 
-                            <div className="flex w-full flex-row justify-between pb-2 px-10 border-b-2 border-gray-300">
-                                <div>
-                                    <p className="font-poppins text-gray-700 ss:max-w-[500px] max-w-[300px] mt-5 text-center text-[18px]">
-                                        {(new Date()).toDateString()}
-                                    </p>
-                                </div>
-                                <div>
-                                    <p className="font-poppins text-gray-700 ss:max-w-[500px] max-w-[300px] mt-5 text-center text-[18px]">
-                                        Новости сегодня
-                                    </p>
-                                </div>
+                        <div className="flex w-full flex-col xs:flex-row xs:justify-between pb-2 px-10 border-b-2 border-gray-300">
+                            <div>
+                                <p className="font-poppins text-gray-700 xs:max-w-[300px] mt-5 text-center text-[18px]">
+                                    {(new Date()).toDateString()}
+                                </p>
                             </div>
-
-                            <div className="flex flex-wrap w-full justify-center px-10 border-b-2 border-[#616161]">
-                                {getUniqueTags(newsFromWebsite).slice(0, 12).map((tag, index) => {
-                                    return (
-                                        <div key={`${new Date() + index}`} className="w-auto h-[50px] flex-shrink-0 px-5">
-                                            <p className="py-3 cursor-pointer hover:text-black text-center text-[18px] font-normal text-gray-600 ss:max-w-[500px] max-w-[300px]">
-                                                {tag}
-                                            </p>
-                                        </div>
-                                    )
-                                })}
+                            <div>
+                                <p className="font-poppins text-gray-700 xs:max-w-[300px] mt-5 text-center text-[18px]">
+                                    Новости сегодня
+                                </p>
                             </div>
+                        </div>
 
+                        <div className="hidden sm:flex flex-wrap w-full justify-center px-10 border-b-2 border-[#616161] ">
+                            {getUniqueTags(newsFromWebsite).slice(0, 12).map((tag, index) => {
+                                return (
+                                    <div key={`${new Date() + index}`} className="w-auto h-[50px] flex-shrink-0 px-5">
+                                        <p className="transform hover:-translate-y-1 transition-all duration-200 py-3 cursor-pointer hover:text-black text-center text-[18px] font-normal text-gray-600 ss:max-w-[500px] max-w-[300px]">
+                                            {tag}
+                                        </p>
+                                    </div>
+                                )
+                            })}
+                        </div>
+
+                        <div ref={top}/>
+
+                        <div className="flex flex-col semiMd:flex-row justify-between w-full justify-center items-center py-5">
+                            <div className="w-full flex flex-col xl:flex-row justify-between">
+                                {newsDataInfo.slice(0, 2).map((card, index) => <HeaderCard key={new Date() + `${index}`} mapKey={index} data={card}/>)}
+                            </div>
+                            <div className="w-full flex flex-col xl:flex-row justify-between">
+                                {newsDataInfo.slice(2, 4).map((card, index) => <HeaderCard key={new Date() + `${index}`} mapKey={index} data={card}/>)}
+                            </div>
+                        </div>
+
+                        <div className="w-full border-b-2 border-t-2 border-t-gray-700 border-b-gray-400 py-[1px]"/>
+
+
+                        <div className="relative z-[5] mt-[5%]">
                             <div ref={top} />
-
-                            <div className="flex flex-wrap w-ful justify-center items-center py-5">
-                                {newsFromWebsite.slice(0, 4).map((card, index) => <HeaderCard mapKey={index} data={card}/> )}
-                            </div>
-
-                            <div className="w-full border-b-2 border-t-2 border-t-gray-700 border-b-gray-400 py-[1px]" />
-
-                            <div className="w-full flex pt-5 ">
-                                <div className="w-full flex flex-col justify-center items-center">
-                                    <div className="">
-                                        <TopLeftSideContainer data={newsFromWebsite} />
-                                    </div>
-                                </div>
-
-                                <div className="w-[40%]">
-                                    <div className="">
-
-                                    </div>
-                                    <div className="w-full flex flex-row justify-between">
-                                        <div className="border-l-2 border-gray-500">
-                                            <div className="flex flex-wrap">
-                                                {
-                                                    newsFromWebsite.slice(0, 16).map((card, index) => {
-                                                        return (
-                                                            <div className="flex flex-col items-center max-w-[50%]">
-                                                                <MiniNewsCard data={card}/>
-                                                            </div>
-                                                        )
-                                                    })
-                                                }
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="w-full flex justify-center mt-20 mb-20">
-                                <h1 className="pt-5 font-poppins font-semibold ss:text-[72px] ultraSmall:text-[45px] text-[52px] max-w-[90%] text-gray-700 ss:leading-[100.8px] leading-[75px] text-center">
-                                    Остальные новости
+                            <div className="">
+                                <h1 className="font-poppins font-semibold ss:text-[72px] ultraSmall:text-[45px] text-[52px] text-gray-700 ss:leading-[100.8px] leading-[75px] text-center">
+                                    Главная
                                 </h1>
                             </div>
 
-                            <div className="w-full flex justify-center mb-20">
-                                <div className="w-[80%] columns-1 ss:columns-1 md:columns-2 lg:columns-3">
-                                    {newsFromWebsite.slice(0, 40).map((card, index) => <VerticalNewsCard elIndex={index} key={new Date() + `${index}`} {...card} />)}
+                            <div className="w-full flex justify-center items-center">
+                                <div className="flex xl:flex-row flex-col pt-[5%] xl:w-[80%] w-[95%]">
+                                    <div className="hidden lg:flex flex-wrap justify-center w-full h-full">
+                                        { newsDataInfo ?
+                                            currentPosts.map((card, index) => {
+                                                return (
+                                                    <HorizontalNewsCard imgSource={worldPics} index={index} key={new Date() + `${index}`} {...card} />
+                                                )
+                                            })
+                                            :
+                                            <div>
+                                                <div className="">Loading...</div>
+                                            </div>
+                                        }
+                                    </div>
                                 </div>
                             </div>
 
-                            <div className="w-full flex flex-row justify-evenly justify-center mt-20 mb-40">
-                                <Link to={`/`}>
-                                    <GreyButton title={'Домой'}/>
-                                </Link>
-                                <Link to={`/`}>
-                                    <GreyButton title={'Загрузить еще'}/>
-                                </Link>
-                                <div>
-                                    <GreyButton title={'Назад'}/>
-                                </div>
+                            <div className="lg:hidden w-full justify-center flex flex-wrap">
+                                { newsDataInfo ?
+                                    currentPosts.map((card, index) => <VerticalNewsCard elIndex={index} key={new Date() + `${index}`} {...card} />)
+                                    :
+                                    <div>
+                                        <div className="">Loading...</div>
+                                    </div>
+                                }
                             </div>
 
+                            <div className="w-full flex items-center justify-center mt-[5%]">
+                                <ReactPaginate
+                                    onPageChange={paginate}
+                                    onClick={executeTopScroll}
+                                    pageCount={Math.ceil(newsDataInfo.length / postsPerPage)}
+                                    previousLabel={'<'}
+                                    nextLabel={'>'}
+                                    pageRangeDisplayed={pageRangeDisplayed}
+                                    marginPagesDisplayed={marginPagesDisplayed}
+                                    renderOnZeroPageCount={null}
+                                    containerClassName={'pagination'}
+                                    pageLinkClassName={'page-number'}
+                                    previousLinkClassName={'page-number'}
+                                    nextLinkClassName={'page-number'}
+                                    activeLinkClassName={'active'}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

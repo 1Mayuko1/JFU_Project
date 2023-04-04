@@ -70,7 +70,7 @@ const SideInfoCards = () => {
                     </div>
                     <div className="flex justify-center items-center pb-10">
                         <form method="GET" onSubmit={handleSubmit}>
-                            <div className="border-2 border-[#616161] rounded-xl bg-gray-300 flex flex-row justify-center items-center">
+                            <div className="border-2 border-[#616161] rounded-xl bg-gray-50 flex flex-row justify-center items-center">
                                 <div className="flex items-center pl-2">
                                     <button type="button" className="p-1 focus:outline-none focus:shadow-outline">
                                         <Link to={`/newPost/${searchTerm}`}>
@@ -79,7 +79,7 @@ const SideInfoCards = () => {
                                     </button>
                                 </div>
                                 <div className="text-gray-700">
-                                    <input type="text" name="search" className="w-full h-[50px] justify-center items-center placeholder-gray-600 text-sm text-gray-700 bg-gray-300 rounded-xl pl-3 focus:outline-none focus:text-gray-700" placeholder="Search some text" value={searchTerm} onChange={handleChange}/>
+                                    <input type="text" name="search" className="w-full h-[50px] justify-center items-center placeholder-gray-600 text-sm text-gray-700 bg-gray-50 rounded-xl pl-3 focus:outline-none focus:text-gray-700" placeholder="Search some text" value={searchTerm} onChange={handleChange}/>
                                 </div>
                             </div>
                         </form>

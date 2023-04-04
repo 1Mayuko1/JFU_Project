@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {arrowUp, chevronDown, chevronRight} from "../assets";
+import {arrowUp, chessTestImage, chevronDown, chevronRight} from "../assets";
 import {Link} from "react-router-dom";
 import GreyButton from "./GreyButton";
 
@@ -29,9 +29,9 @@ const HorizontalNewsCard = ({content, title, date, mainImage, paragraphs, detail
 
     return (
         <div className="flex flex-col w-full items-center justify-center">
-            <div className={`${detailsVisible ? "my-0 rounded-t-lg" : "rounded-lg mb-5"} w-[95%] cursor-pointer flex flex-col lg:flex-row items-center bg-gray-50 shadow-xl delay-100 duration-500`}>
-                <div className={`h-full lg:w-[50%] ultraSmall:w-full`}>
-                    <img className={`object-cover object-top w-full h-full rounded-l`} src={mainImage} alt="image" />
+            <div className={`${detailsVisible ? "my-0 rounded-t-lg" : "rounded-lg mb-5"} w-[95%] cursor-pointer flex flex-row items-center bg-gray-50 shadow-xl delay-100 duration-500`}>
+                <div className={`h-full md:max-w-[300px] md:min-w-[300px] w-full`}>
+                    <img className={`object-cover h-full w-full object-top rounded-l`} src={mainImage} alt="image" />
                 </div>
                 <div className="flex flex-col w-full md:h-full md:justify-between">
                     <div className="flex flex-col justify-between p-4 leading-normal w-full">
@@ -65,7 +65,7 @@ const HorizontalNewsCard = ({content, title, date, mainImage, paragraphs, detail
                 </div>
             </div>
 
-            <div className={`${detailsVisible ? '-mt-[1px]' : 'hidden'} w-[95%] mb-5 rounded-b-lg flex flex-col cursor-pointer items-center bg-gray-100 shadow-xl delay-100 duration-500`}>
+            <div className={`${detailsVisible ? '-mt-[1px]' : 'hidden'} w-[95%] mb-5 rounded-b-lg flex flex-col cursor-pointer items-center bg-gray-50 shadow-xl delay-100 duration-500`}>
                 {paragraphs.map((item, index) => {
                     return (
                         <p key={new Date() + `${index}`} className={`px-5 py-6 font-poppins font-normal text-[18px] leading-[24px] ss:text-[22px] ss:leading-[28px] text-gray-700`}>

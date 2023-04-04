@@ -1,6 +1,5 @@
-import { useState } from "react";
+import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom"
-
 import {chevronRight, chevronDown, close, menu, search, fond_logo} from "../assets";
 import {dropDownNavLinks, simpleNavLinks} from "../constants/constants";
 import styles from "../style";
@@ -12,6 +11,20 @@ const Navbar = () => {
     const [dropDownVisible, setDropDownVisible] = useState(false);
     const [dropDownMenuVisible, setDropDownMenuVisible] = useState(false);
     const [searchTerm, setSearchTerm] = useState('')
+    const [isVisibleFixedNav, setIsVisibleFixedNav] = useState(false);
+
+    function handleScroll() {
+        const scrolled = window.scrollY >= 600;
+        setIsVisibleFixedNav(scrolled);
+    }
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     const navigate = useNavigate()
 
@@ -69,9 +82,17 @@ const Navbar = () => {
         }
     }
 
+    // const handleChangeVisibleNav = () => {
+    //     setToggleMenu(false)
+    //     setSearchVisible(false)
+    //     setDropDownVisible(false)
+    //     setDropDownMenuVisible(false)
+    // }
+
     return (
-        <div className="bg-gray-50 w-full overflow-hidden z-[100]">
-            <div className={`sm:px-10 px-6 ${styles.flexCenter}`}>
+        <div className={`${isVisibleFixedNav ? "fixed top-0" : "flex"} z-[10] sm:px-10 px-6 flex justify-center items-center bg-gray-50 w-full transition-all duration-500 ease-in-out`}>
+            <div className="w-full">
+                {/*<div className='absolute top-0 left-0 w-[100%] h-[100%] z-[3]' onClick={handleChangeVisibleNav}/>*/}
                 <div className={`${styles.boxWidth}`}>
                     <nav className="w-full flex py-6 justify-between items-center navbar">
                         <div className="relative z-[3] w-[124px] h-[32px] flex flex-row items-center cursor-pointer">
@@ -146,9 +167,9 @@ const Navbar = () => {
                             </div>
                         </div>
 
-                        <div className={`sm:flex hidden ml-10 justify-end items-center shadow-xl`}>
+                        <div className={`sm:flex hidden ml-10 justify-end items-center`}>
                             <div className="w-[22px] h-[22px]">
-                                <img onClick={checkSearchVisible} src={searchVisible ? close : search} alt="search" className="relative z-[1] w-[22px] h-[22px] object-contain cursor-pointer"/>
+                                <img onClick={checkSearchVisible} src={searchVisible ? close : search} alt="search" className="relative z-[3] w-[22px] h-[22px] cursor-pointer"/>
                             </div>
                             <div className={`${!searchVisible ? "hidden" : "flex"} absolute top-20 right-0 mx-4 my-2 min-w-[140px] sidebar rounded-xl z-[3]`}>
                                 <form method="GET" onSubmit={handleSubmit}>
@@ -166,7 +187,7 @@ const Navbar = () => {
                             </div>
                         </div>
 
-                        <div className={`sm:hidden ml-10 justify-end items-center shadow-xl`}>
+                        <div className={`sm:hidden ml-10 justify-end items-center`}>
                             <img onClick={() => {checkSearchVisible(); setDropDownMenuVisible(false)}} src={searchVisible ? close : search} alt="search" className="relative z-[1] w-[30px] h-[30px] object-contain cursor-pointer"/>
                             <div className={`${!searchVisible ? "hidden" : "flex"} absolute top-20 right-0 right-0 mx-4 my-2 min-w-[140px] sidebar rounded-xl z-[3]`}>
                                 <form method="GET" onSubmit={handleSubmit}>
@@ -182,12 +203,12 @@ const Navbar = () => {
                                 </form>
                             </div>
                         </div>
-
                     </nav>
                 </div>
             </div>
         </div>
     );
 };
+
 
 export default Navbar;
