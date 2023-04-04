@@ -8,6 +8,7 @@ import SideInfoBottomVersCards from "./SideInfoBottomVersCards";
 import Loader from "./Loader";
 import ReactPaginate from "react-paginate";
 import VerticalNewsCard from "./VerticalNewsCard";
+import VirtualMuseumCard from "./VirtualMuseumCard";
 
 const Hero = () => {
     const [load, setLoad] = useState(false)
@@ -51,9 +52,11 @@ const Hero = () => {
                     <Loader load={load}/>
                 </div>
 
-                <div id='header' className="relative h-screen">
-                    <div className="absolute z-[0] w-full h-full inset-0 object-cover opacity-60">
+                <div id='header' className="relative h-screen min-h-[800px]">
+                    <div className="absolute z-[0] w-full h-full inset-0 object-cover gray__opacity">
                         <CarouselComponent />
+                    </div>
+                    <div className="gray__opacity::before">
                     </div>
                     <div className="flex relative w-full sm:pt-[25%] md:pt-[13%] pt-[30%]">
                         <div className="flex flex-col justify-between items-center w-full relative z-[1]">
@@ -136,7 +139,15 @@ const Hero = () => {
                             <SideInfoBottomVersCards />
                         </div>
 
-                        <div className="flex justify-center items-center w-full mt-20">
+                        <div className="">
+                            <CreatorInfoCard />
+                        </div>
+
+                        <div className="">
+                            <VirtualMuseumCard />
+                        </div>
+
+                        <div className="flex justify-center items-center w-full pt-[5%] pb-[10%]">
                             <section className="bg-gray-50 flex flex-row flex-wrap justify-between items-center">
 
                                 <div className="w-full flex flex-wrap justify-center">
@@ -154,10 +165,6 @@ const Hero = () => {
                                 </div>
 
                             </section>
-                        </div>
-
-                        <div className="">
-                            <CreatorInfoCard />
                         </div>
 
                     </div>

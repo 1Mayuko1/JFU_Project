@@ -5,6 +5,7 @@ import Loader from "./Loader";
 import VerticalNewsCard from "./VerticalNewsCard";
 import HorizontalNewsCard from "./HorizontalNewsCard";
 import ReactPaginate from "react-paginate";
+import GreyButton from "./GreyButton";
 
 const NewsByNameComponent = ({text, newsDataInfo}) => {
     const [load, setLoad] = useState(true)
@@ -162,6 +163,26 @@ const NewsByNameComponent = ({text, newsDataInfo}) => {
                                     nextLinkClassName={'page-number'}
                                     activeLinkClassName={'active'}
                                 />
+                            </div>
+
+                            <div className="flex justify-center items-center w-full py-[5%]">
+                                <section className="bg-gray-50 flex flex-row flex-wrap justify-between items-center">
+
+                                    <div className="w-full flex flex-wrap justify-center">
+                                        <div className="flex ss:flex-row flex-col">
+
+                                            <div className="group cursor-pointer flex-1 min-w-[200px] mx-10 my-5" onClick={executeTopScroll}>
+                                                <GreyButton title={'На верх'}/>
+                                            </div>
+
+                                            <div onClick={executeTopScroll} className="group cursor-pointer flex-1 min-w-[200px] mx-10 my-5">
+                                                <GreyButton title={'К новостям'}/>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </section>
                             </div>
                         </div>
                     </div>

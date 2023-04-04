@@ -29,7 +29,7 @@ const NewsDetails = () => {
 
 
     return (
-        <section className="bg-gray-100 w-full flex justify-center">
+        <section className="bg-gray-50 w-full flex justify-center">
             <div>
                 <Loader load={load}/>
             </div>
@@ -37,7 +37,7 @@ const NewsDetails = () => {
                 <img className="w-full max-h-[550px] object-cover" src={"https://images.unsplash.com/photo-1605367031760-5522b8a52756?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"} alt=""/>
             </div>
             <div className="relative z-[2] w-full flex justify-center items-center my-[10%]">
-                <div className="relative z-[2] h-auto w-[90%] md:w-[70%] bg-gray-200 shadow-2xl rounded-xl px-10 pb-10">
+                <div className="relative z-[2] h-auto w-[90%] md:w-[70%] bg-gray-100 shadow-2xl rounded-xl px-10 pb-10">
 
                     <div className="w-full flex flex-col-reverse semiLg:flex-row justify-between semiLg:pt-20 pt-10">
                         <div className="semiLg:w-[70%] w-full">

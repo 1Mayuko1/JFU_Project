@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom"
-import {chevronRight, chevronDown, close, menu, search, fond_logo} from "../assets";
+import {chevronRight, chevronDown, close, menu, search, fond_logo, forum_logo} from "../assets";
 import {dropDownNavLinks, simpleNavLinks} from "../constants/constants";
 import styles from "../style";
 import {Link} from "react-router-dom";
@@ -96,6 +96,7 @@ const Navbar = () => {
                 <div className={`${styles.boxWidth}`}>
                     <nav className="w-full flex py-6 justify-between items-center navbar">
                         <div className="relative z-[3] w-[124px] h-[32px] flex flex-row items-center cursor-pointer">
+                            {/*<img src={forum_logo} alt="logo" className="mr-1 w-[60px] h-[40px]"/>*/}
                             <img src={fond_logo} alt="logo" className="mr-1 w-[30px] h-[40px]"/>
                             <p className={`text-mainBlue text-[30px] font-semibold`}>J</p>
                             <p className={`text-mainBlue text-[30px] font-semibold`}>F</p>
@@ -110,7 +111,7 @@ const Navbar = () => {
                                 <li className={`font-poppins font-normal text-gray-700 cursor-pointer text-[18px] hover:text-black`}>
                                     <p>Новости</p>
                                 </li>
-                                <img alt="arrow" src={dropDownVisible ? chevronDown : chevronRight} className="w-[12px] h-[12px] items-start ml-2"/>
+                                <img alt="arrow" src={dropDownVisible ? chevronDown : chevronRight} className="w-[12px] h-[12px] items-start ml-2 mt-1"/>
                             </div>
                             {simpleNavLinks.map((nav, index) => (
                                 <li key={new Date() + `${index}`} className={`font-poppins font-normal text-gray-700 cursor-pointer text-[18px] hover:text-black ${index === simpleNavLinks.length - 1 ? "mr-0" : "mr-10"}`}>
@@ -143,7 +144,7 @@ const Navbar = () => {
                             </ul>
                         </div>
 
-                        <div className="sm:hidden flex flex-1 justify-end items-center">
+                        <div className="semiMd:hidden flex flex-1 justify-end items-center">
                             <img src={toggleMenu ? close : menu} alt="menu" className="w-[28px] h-[28px] object-contain relative z-[1] cursor-pointer" onClick={checkMenuVisible}/>
                             <div className={`${!toggleMenu ? "hidden" : "flex"} p-6 bg-gray-100 absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar z-[3] shadow-xl`}>
                                 <ul className="w-full list-none flex-col">
@@ -167,7 +168,7 @@ const Navbar = () => {
                             </div>
                         </div>
 
-                        <div className={`sm:flex hidden ml-10 justify-end items-center`}>
+                        <div className={`semiMd:flex hidden ml-10 justify-end items-center`}>
                             <div className="w-[22px] h-[22px]">
                                 <img onClick={checkSearchVisible} src={searchVisible ? close : search} alt="search" className="relative z-[3] w-[22px] h-[22px] cursor-pointer"/>
                             </div>
@@ -187,7 +188,7 @@ const Navbar = () => {
                             </div>
                         </div>
 
-                        <div className={`sm:hidden ml-10 justify-end items-center`}>
+                        <div className={`semiMd:hidden ml-10 justify-end items-center`}>
                             <img onClick={() => {checkSearchVisible(); setDropDownMenuVisible(false)}} src={searchVisible ? close : search} alt="search" className="relative z-[1] w-[30px] h-[30px] object-contain cursor-pointer"/>
                             <div className={`${!searchVisible ? "hidden" : "flex"} absolute top-20 right-0 right-0 mx-4 my-2 min-w-[140px] sidebar rounded-xl z-[3]`}>
                                 <form method="GET" onSubmit={handleSubmit}>

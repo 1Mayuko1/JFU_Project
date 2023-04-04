@@ -6,7 +6,7 @@ const ForumNews = () => {
     return (
         <section>
             <div className="">
-                <NewsByNameComponent text={'Новости форма'} newsDataInfo={newsFromWebsite}/>
+                <NewsByNameComponent text={'Новости форума'} newsDataInfo={newsFromWebsite}/>
             </div>
         </section>
     );

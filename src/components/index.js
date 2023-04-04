@@ -16,6 +16,7 @@ import TopLeftSideContainer from "./News/TopLeftSideContainer";
 import ThreeCardsComponent from "./News/ThreeCardsComponent";
 import MiniNewsCard from "./News/MiniNewsCard";
 import HeaderCard from "./News/HeaderCard";
+import VirtualMuseumCard from "./VirtualMuseumCard";
 
 export {
     Loader,
@@ -36,4 +37,5 @@ export {
     ThreeCardsComponent,
     MiniNewsCard,
     HeaderCard,
+    VirtualMuseumCard
 }

@@ -10,6 +10,7 @@ import UkraineNews from './UkraineNews'
 import WorldNews from './WorldNews'
 import Contacts from "./Contacts";
 import NewPost from "./NewPost";
+import VirtualMuseumPage from "./VirtualMuseumPage";
 
 export {
     NotFound,
@@ -24,4 +25,5 @@ export {
     WorldNews,
     Contacts,
     NewPost,
+    VirtualMuseumPage,
 }
