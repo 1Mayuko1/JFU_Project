@@ -19,7 +19,7 @@ const HeaderCard = ({data}) => {
             <Link to={`/home/${data.id}`}>
                 <div className="flex flex-row card m-2 cursor-pointer border border-gray-400 rounded-lg hover:shadow-md hover:border-opacity-0 transform hover:-translate-y-1 transition-all duration-200">
                     <div className="w-[50%] md:w-[40%] min-h-[170px] max-h-[130px]">
-                        <img src={data.mainImage} alt="image" className="rounded-l-lg w-full h-full object-cover" />
+                        <img src={data.mainImage} alt="image" className="rounded-l-[7px] w-full h-full object-cover -ml-[0.5px]" />
                     </div>
                     <div className="m-3 flex flex-col justify-between w-full">
                         <h2 className="text-lg mb-2">
