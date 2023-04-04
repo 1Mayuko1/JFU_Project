@@ -10,8 +10,16 @@ import SideInfoCards from "./SideInfoCards";
 import VerticalNewsCard from "./VerticalNewsCard";
 import CreatorInfoCard from "./CreatorInfoCard";
 import SideInfoBottomVersCards from "./SideInfoBottomVersCards";
+import Loader from "./Loader";
+import NewsByNameComponent from "./NewsByNameComponent";
+import TopLeftSideContainer from "./News/TopLeftSideContainer";
+import ThreeCardsComponent from "./News/ThreeCardsComponent";
+import MiniNewsCard from "./News/MiniNewsCard";
+import HeaderCard from "./News/HeaderCard";
+import VirtualMuseumCard from "./VirtualMuseumCard";
 
 export {
+    Loader,
     Layout,
     Navbar,
     Hero,
@@ -24,4 +32,10 @@ export {
     VerticalNewsCard,
     CreatorInfoCard,
     SideInfoBottomVersCards,
+    NewsByNameComponent,
+    TopLeftSideContainer,
+    ThreeCardsComponent,
+    MiniNewsCard,
+    HeaderCard,
+    VirtualMuseumCard
 }

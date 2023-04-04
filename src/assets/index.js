@@ -26,9 +26,14 @@ import news1Image from "./news1Image.jpeg"
 import shagal from "./shagal.jpeg"
 import news3Photo from "./news3Photo.jpeg"
 import news4Image from "./news4Image.jpeg"
-
 import news5Image from "./news5Image.jpeg"
-// import news3Photo from "./news3Photo.jpeg"
+import fond_logo from "./fond_logo.png"
+import forum_logo from "./forum_logo.png"
+import creatorMuseumImg from "./creatorMuseumImg.jpeg"
+import creatorImg from "./creatorImg.jpeg"
+import carousel_img_1 from "./carousel_img_1.avif"
+import carousel_img_2 from "./carousel_img_2.avif"
+import carousel_img_3 from "./carousel_img_3.avif"
 
 export {
     menu,
@@ -60,4 +65,11 @@ export {
     news3Photo,
     news4Image,
     news5Image,
+    forum_logo,
+    fond_logo,
+    creatorMuseumImg,
+    creatorImg,
+    carousel_img_1,
+    carousel_img_2,
+    carousel_img_3,
 }

@@ -17,12 +17,12 @@ const NotFound = () => {
             <div className={`${load ? "flex" : "hidden"} h-screen w-full flex items-center justify-center`}>
                 <InfinitySpin
                     width='200'
-                    color="#4fa94d"
+                    color="#616161"
                 />
             </div>
             <div className={`${load ? "hidden" : ""}`}>
                 <center className={`pt-[15%] m-auto`}>
-                    <svg className="" enableBackground="new 0 0 226 249.135" height="249.135" id="Layer_1" overflow="visible" version="1.1" viewBox="0 0 226 249.135" width="226" xml:space="preserve"><circle cx="113" cy="113" fill="#FFE585" r="109"/>
+                    <svg className="" enableBackground="new 0 0 226 249.135" height="249.135" id="Layer_1" overflow="visible" version="1.1" viewBox="0 0 226 249.135" width="226" xmlSpace="preserve"><circle cx="113" cy="113" fill="#FFE585" r="109"/>
                         <line enableBackground="new" fill="none" opacity="0.29" stroke="#6E6E96" strokeLinecap="round" strokeLinejoin="round" strokeWidth="8" x1="88.866" x2="136.866" y1="245.135" y2="245.135"/>
                         <line enableBackground="new" fill="none" opacity="0.17" stroke="#6E6E96" strokeLinecap="round" strokeLinejoin="round" strokeWidth="8" x1="154.732" x2="168.732" y1="245.135" y2="245.135"/>
                         <line enableBackground="new" fill="none" opacity="0.17" stroke="#6E6E96" strokeLinecap="round" strokeLinejoin="round" strokeWidth="8" x1="69.732" x2="58.732" y1="245.135" y2="245.135"/>
@@ -36,14 +36,14 @@ const NotFound = () => {
                     </svg>
                     <div className=" tracking-widest mt-4">
                         <span className="text-gray-500 text-6xl block"><span>4  0  4</span></span>
-                        <span className="text-gray-500 text-xl">Извините, страницы не существует</span>
+                        <span className="text-gray-500 text-xl font-poppins">Извините, страницы не существует</span>
                     </div>
                 </center>
                 <center className="mt-6">
                     <Link to={`/`}>
-                        <a href="#" className="text-gray-500 font-mono text-xl bg-gray-200 p-3 rounded-md hover:shadow-md">
-                            Домой
-                        </a>
+                        <button className="px-10 text-gray-500 font-mono text-xl bg-gray-200 p-3 rounded-md hover:shadow-md">
+                            <p className="font-poppins">Домой</p>
+                        </button>
                     </Link>
                 </center>
             </div>
