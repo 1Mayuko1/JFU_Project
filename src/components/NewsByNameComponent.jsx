@@ -62,10 +62,10 @@ const NewsByNameComponent = ({text, newsDataInfo}) => {
 
     return (
         <section>
-            <div>
-                <div>
-                    <Loader load={load}/>
-                </div>
+            <div className="bg-gray-50">
+                <Loader load={load}/>
+            </div>
+            <div className={`${load ? "opacity-0" : "opacity-100"}`}>
                 <div id="header">
                     <div className="flex flex-col justify-between items-center w-full bg-gray-50">
                         <h1 className="pt-5 font-poppins font-semibold ss:text-[72px] ultraSmall:text-[45px] text-[52px] max-w-[90%] text-gray-700 ss:leading-[100.8px] leading-[75px] text-center">

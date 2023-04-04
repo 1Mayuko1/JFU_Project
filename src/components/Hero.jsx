@@ -11,7 +11,7 @@ import VerticalNewsCard from "./VerticalNewsCard";
 import VirtualMuseumCard from "./VirtualMuseumCard";
 
 const Hero = () => {
-    const [load, setLoad] = useState(false)
+    const [load, setLoad] = useState(true)
     const newsDataState = newsFromWebsite
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(12);
@@ -24,6 +24,11 @@ const Hero = () => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    useEffect(() => {
+        setTimeout(() => {
+            setLoad(false)
+        }, 1000)
+    }, []);
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -47,11 +52,10 @@ const Hero = () => {
 
     return (
         <>
-            <section className={`bg-gray-50 relative`}>
-                <div>
-                    <Loader load={load}/>
-                </div>
-
+            <div className="bg-gray-50">
+                <Loader load={load}/>
+            </div>
+            <section className={`${load ? "opacity-0" : "opacity-100"} bg-gray-50 relative`}>
                 <div id='header' className="relative h-screen min-h-[800px]">
                     <div className="absolute z-[0] w-full h-full inset-0 object-cover gray__opacity">
                         <CarouselComponent />
